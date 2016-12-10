@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System.Diagnostics;
 
 namespace LD37.GameLevels
@@ -19,6 +20,8 @@ namespace LD37.GameLevels
         Texture2D title;
 
         Camera cam;
+
+        Song bgMsucic;
 
         public override void Initialize()
         {
@@ -40,6 +43,9 @@ namespace LD37.GameLevels
             button = (UIButton)canvas.CreateUIElement(new UIButton("Play Game", new Rectangle(100, 100, 400, 200)));
             mouseText = (UIText)canvas.CreateUIElement(new UIText(Vector2.Zero, "Mouse Pos"));
             title = content.Load<Texture2D>("Title");
+            bgMsucic = content.Load<Song>("TestyTest");
+            MediaPlayer.Volume = .05f;
+            MediaPlayer.Play(bgMsucic);
         }
 
         public override void Update(GameTime gameTime)

@@ -42,6 +42,16 @@ namespace LD37.Managers
             newKeyState = Keyboard.GetState();
         }
 
+        public int getMouseWheelState()
+        {
+            return mouseState.ScrollWheelValue;
+        }
+
+        public int getOldMouseWheelState()
+        {
+            return oldMouseState.ScrollWheelValue;
+        }
+
         public Vector2 getMousePos()
         {
             return mouseState.Position.ToVector2();
