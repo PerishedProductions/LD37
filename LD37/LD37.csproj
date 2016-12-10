@@ -38,6 +38,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Maps\Map.cs" />
+    <Compile Include="Entities\Tiles\Tile.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameLevels\GameLevel.cs" />
     <Compile Include="GameLevels\MainLevel.cs" />
@@ -85,7 +88,12 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\UI\MainMenu.json" />
+    <None Include="Data\Map.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\UI\MainMenu.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
