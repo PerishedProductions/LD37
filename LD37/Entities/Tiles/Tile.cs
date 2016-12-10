@@ -19,8 +19,8 @@ namespace LD37.Entities
         //Loads the sprite
         public override void LoadContent(ContentManager content)
         {
-            belt = new Animation(sprite, 64, 64, 3, 100, true);
             base.LoadContent(content);
+            belt = new Animation(sprite, 64, 64, 3, 100, true);
         }
 
         public override void Update(GameTime gameTime)

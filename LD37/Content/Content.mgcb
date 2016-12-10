@@ -68,3 +68,9 @@
 /processorParam:TextureFormat=Color
 /build:TransportBelt.png
 
+#begin TestyTest.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:TestyTest.wav
+

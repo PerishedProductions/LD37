@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace LD37.GameLevels
 {
@@ -92,22 +93,32 @@ namespace LD37.GameLevels
 
             if (InputManager.Instance.isDown(Keys.W))
             {
-                cam.position += new Vector2(0, -1);
+                cam.position += new Vector2(0, -3);
             }
 
             if (InputManager.Instance.isDown(Keys.S))
             {
-                cam.position += new Vector2(0, 1);
+                cam.position += new Vector2(0, 3);
             }
 
             if (InputManager.Instance.isDown(Keys.D))
             {
-                cam.position += new Vector2(1, 0);
+                cam.position += new Vector2(3, 0);
             }
 
             if (InputManager.Instance.isDown(Keys.A))
             {
-                cam.position += new Vector2(-1, 0);
+                cam.position += new Vector2(-3, 0);
+            }
+
+            if (InputManager.Instance.getMouseWheelState() > InputManager.Instance.getOldMouseWheelState())
+            {
+                cam.zoom += 0.1f;
+            }
+
+            if (InputManager.Instance.getMouseWheelState() < InputManager.Instance.getOldMouseWheelState())
+            {
+                cam.zoom -= 0.1f;
             }
 
             for (int i = MachineList.Count - 1; i >= 0; i--)
