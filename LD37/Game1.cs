@@ -2,6 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using LD37.Managers;
+using LD37.GameLevels;
+
 namespace LD37
 {
     /// <summary>
@@ -26,8 +29,6 @@ namespace LD37
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -40,7 +41,8 @@ namespace LD37
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            LevelManager.Instance.content = Content;
+            LevelManager.Instance.ChangeLevel(new MenuLevel());
         }
 
         /// <summary>
@@ -62,7 +64,8 @@ namespace LD37
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            LevelManager.Instance.currentLevel.Update(gameTime);
+
 
             base.Update(gameTime);
         }
@@ -75,7 +78,7 @@ namespace LD37
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            LevelManager.Instance.currentLevel.Draw(spriteBatch);
 
             base.Draw(gameTime);
         }
