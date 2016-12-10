@@ -31,7 +31,7 @@ namespace LD37.Entities.Machines
 
         public Machine CreateAssembler(Vector2 position)
         {
-            Machine machine = new Assembler();
+            Assembler machine = new Assembler();
 
             machine.spriteName = "Window";
             machine.RotationInDegrees = 0;
