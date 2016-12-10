@@ -134,7 +134,7 @@ namespace LD37.GameLevels
             for (int i = ResourceList.Count - 1; i >= 0; i--)
             {
                 ResourceList[i].Update(gameTime);
-                ResourceList[i].position += new Vector2(0.1f, 0);
+                ResourceList[i].position += new Vector2(1f, 0);
                 foreach (var Machine in MachineList)
                 {
                     if (Machine.CheckCollision(ResourceList[i]))
