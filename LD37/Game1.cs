@@ -29,6 +29,7 @@ namespace LD37
         /// </summary>
         protected override void Initialize()
         {
+            Window.Title = "Santa's Workshop";
             base.Initialize();
         }
 

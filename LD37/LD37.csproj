@@ -45,6 +45,7 @@
     <Compile Include="GameLevels\GameLevel.cs" />
     <Compile Include="GameLevels\MainLevel.cs" />
     <Compile Include="GameLevels\MenuLevel.cs" />
+    <Compile Include="Graphics\Animation.cs" />
     <Compile Include="Managers\Camera.cs" />
     <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\LevelManager.cs" />

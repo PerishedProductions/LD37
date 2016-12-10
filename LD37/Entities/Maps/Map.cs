@@ -61,7 +61,10 @@ namespace LD37.Entities
 
         public virtual void Update(GameTime gameTime)
         {
-
+            for (int i = 0; i < tiles.Count; i++)
+            {
+                tiles[i].Update(gameTime);
+            }
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
