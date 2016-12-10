@@ -19,7 +19,6 @@ namespace LD37.Entities
         //Loads the sprite
         public override void LoadContent(ContentManager content)
         {
-            sprite = content.Load<Texture2D>(spriteName);
             belt = new Animation(sprite, 64, 64, 3, 100, true);
             base.LoadContent(content);
         }

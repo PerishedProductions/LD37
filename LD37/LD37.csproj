@@ -39,7 +39,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Machines\AirPump.cs" />
+    <Compile Include="Entities\Machines\Assembler.cs" />
+    <Compile Include="Entities\Machines\Machine.cs" />
     <Compile Include="Entities\Maps\Map.cs" />
+    <Compile Include="Entities\Resources\Battery.cs" />
+    <Compile Include="Entities\Resources\Leather.cs" />
+    <Compile Include="Entities\Resources\Plastic.cs" />
+    <Compile Include="Entities\Resources\Resource.cs" />
+    <Compile Include="Entities\Resources\Toys\SoccerBall.cs" />
+    <Compile Include="Entities\Resources\Toys\Toy.cs" />
+    <Compile Include="Entities\Resources\Toys\ToyFactory.cs" />
+    <Compile Include="Entities\Resources\Toys\ToyRobot.cs" />
     <Compile Include="Entities\Tiles\Tile.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameLevels\GameLevel.cs" />
