@@ -1,7 +1,11 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace LD37.Managers
 {
+
+    enum MouseButton { Left, Middle, Right }
+
     class InputManager
     {
 
@@ -21,17 +25,53 @@ namespace LD37.Managers
             }
         }
 
+        //Keyboard Inputs
         KeyboardState oldKeyState;
         KeyboardState newKeyState;
 
+        //Mouse Inputs
         MouseState mouseState;
-
-        //MouseState mouseState;
+        MouseState oldMouseState;
 
         public void Update()
         {
+            oldMouseState = mouseState;
+            mouseState = Mouse.GetState();
+
             oldKeyState = newKeyState;
             newKeyState = Keyboard.GetState();
+        }
+
+        public Vector2 getMousePos()
+        {
+            return mouseState.Position.ToVector2();
+        }
+
+        public bool mouseIsPressed(MouseButton mouseButton)
+        {
+            switch (mouseButton)
+            {
+                case MouseButton.Left:
+                    if (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Released)
+                    {
+                        return true;
+                    }
+                    break;
+                case MouseButton.Middle:
+                    if (mouseState.MiddleButton == ButtonState.Pressed && oldMouseState.MiddleButton == ButtonState.Released)
+                    {
+                        return true;
+                    }
+                    break;
+                case MouseButton.Right:
+                    if (mouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton == ButtonState.Released)
+                    {
+                        return true;
+                    }
+                    break;
+            }
+
+            return false;
         }
 
         public bool isPressed(params Keys[] keys)
