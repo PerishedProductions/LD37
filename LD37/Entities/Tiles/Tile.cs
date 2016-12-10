@@ -15,7 +15,6 @@ namespace LD37.Entities
         //Loads the sprite
         public override void LoadContent(ContentManager content)
         {
-            sprite = content.Load<Texture2D>(spriteName);
             base.LoadContent(content);
         }
 

@@ -13,23 +13,37 @@ namespace LD37.Entities
 
         public String spriteName;
 
+        public bool Active { get; set; } = true;
+        public float RotationInDegrees { get; set; }
+        public Color SpriteColor { get; set; } = Color.White;
+        protected Vector2 _origin;
+
         public virtual Rectangle BoundingBox
         {
             get
             {
                 return new Rectangle(
-                    (int)position.X,
-                    (int)position.Y,
+                    (int)position.X - sprite.Width / 2,
+                    (int)position.Y - sprite.Height / 2,
                     sprite.Width,
                     sprite.Height);
             }
         }
+
+        public virtual bool CheckCollision(Entity otherEntity)
+        {
+            return this.BoundingBox.Intersects(otherEntity.BoundingBox);
+        }
+
+        public virtual void HandleCollision(Entity otherEntity) { }
 
         public virtual void Initialize() { }
 
         //Loads the sprite
         public virtual void LoadContent(ContentManager content)
         {
+            sprite = content.Load<Texture2D>(spriteName);
+            _origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
 
         }
 
@@ -39,7 +53,7 @@ namespace LD37.Entities
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(sprite, position);
+            spriteBatch.Draw(sprite, new Rectangle((int)position.X, (int)position.Y, sprite.Width, sprite.Height), null, SpriteColor, RotationInDegrees, _origin, SpriteEffects.None, 0);
             spriteBatch.End();
         }
     }
