@@ -42,6 +42,7 @@
     <Compile Include="Entities\Machines\AirPump.cs" />
     <Compile Include="Entities\Machines\Assembler.cs" />
     <Compile Include="Entities\Machines\Machine.cs" />
+    <Compile Include="Entities\Machines\MachineFactory.cs" />
     <Compile Include="Entities\Maps\Map.cs" />
     <Compile Include="Entities\Resources\Battery.cs" />
     <Compile Include="Entities\Resources\Leather.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="GameLevels\MenuLevel.cs" />
     <Compile Include="Graphics\Animation.cs" />
     <Compile Include="Managers\Camera.cs" />
+    <Compile Include="Managers\ConstructionManager.cs" />
     <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\LevelManager.cs" />
     <Compile Include="Program.cs" />

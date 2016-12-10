@@ -1,4 +1,5 @@
 ﻿using CoreGame.Graphics;
+using LD37.Entities.Machines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,7 +8,7 @@ namespace LD37.Entities
 {
     public class Tile : Entity
     {
-
+        public Machine Building { get; set; }
         Animation belt;
 
         public override void Initialize()

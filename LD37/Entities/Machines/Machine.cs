@@ -17,7 +17,7 @@ namespace LD37.Entities.Machines
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, new Rectangle((int)position.X, (int)position.Y, sprite.Width, sprite.Height), null, SpriteColor, RotationInDegrees, _origin, SpriteEffects.None, 0);
+            spriteBatch.Draw(sprite, new Rectangle((int)position.X, (int)position.Y, sprite.Width, sprite.Height), null, SpriteColor, RotationInDegrees, new Vector2(0, 0), SpriteEffects.None, 0);
         }
     }
 }

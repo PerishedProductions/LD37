@@ -1,9 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LD37.GameLevels;
+using LD37.Managers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
-using LD37.Managers;
-using LD37.GameLevels;
 
 namespace LD37
 {
@@ -42,6 +41,7 @@ namespace LD37
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            IsMouseVisible = true;
             //Set the resolution of the window
             graphics.IsFullScreen = false;
             graphics.PreferredBackBufferWidth = 1280;
