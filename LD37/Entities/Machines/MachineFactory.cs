@@ -21,7 +21,7 @@ namespace LD37.Entities.Machines
             machine.spriteName = "Window";
             machine.RotationInDegrees = 0;
             machine.position = position;
-            machine.SpriteColor = Color.Gray;
+            machine.SpriteColor = Color.Blue;
             machine.LoadContent(LevelInstance.Content);
 
             LevelInstance.MachineList.Add(machine);
@@ -35,7 +35,7 @@ namespace LD37.Entities.Machines
 
             machine.spriteName = "Window";
             machine.RotationInDegrees = 0;
-            machine.position = new Vector2(300, 200);
+            machine.position = position;
             machine.SpriteColor = Color.Gray;
             machine.LoadContent(LevelInstance.Content);
 

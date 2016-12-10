@@ -4,17 +4,20 @@ using LD37.Entities.Machines;
 using LD37.Entities.Resources;
 using LD37.Entities.Resources.Toys;
 using LD37.Managers;
+using LD37.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace LD37.GameLevels
 {
     public class MainLevel : GameLevel
     {
+
+        UICanvas canvas;
+        UIText mouseText;
 
         Camera cam;
         Map map;
@@ -30,6 +33,10 @@ namespace LD37.GameLevels
             jsonLoader = new ReadJson();
             map = new Map(jsonLoader.ReadData("Data/Map.json"));
             map.Initialize();
+
+            canvas = new UICanvas();
+            canvas.Initialize();
+
             base.Initialize();
         }
 
@@ -45,6 +52,8 @@ namespace LD37.GameLevels
             MachineFactory.Instace.LevelInstance = this;
 
             Content = content;
+            canvas.LoadContent(content);
+            mouseText = (UIText)canvas.CreateUIElement(new UIText(Vector2.Zero, "Mouse Pos"));
 
             Resource resource = new Leather();
             resource.spriteName = "Window";
@@ -79,7 +88,25 @@ namespace LD37.GameLevels
 
         public override void Update(GameTime gameTime)
         {
+            mouseText.position = InputManager.Instance.getMousePos();
+            mouseText.text = "Mouse Pos: " + InputManager.Instance.getMousePos();
+
             constructionManager.Update();
+
+            if (InputManager.Instance.isDown(Keys.F))
+            {
+                constructionManager.BuildMode = ConstructionManager.BuildingMode.AirPump;
+            }
+
+            if (InputManager.Instance.isDown(Keys.G))
+            {
+                constructionManager.BuildMode = ConstructionManager.BuildingMode.Assembler;
+            }
+
+            if (InputManager.Instance.isDown(Keys.H))
+            {
+                constructionManager.BuildMode = ConstructionManager.BuildingMode.Sell;
+            }
 
             if (InputManager.Instance.isDown(Keys.W))
             {
@@ -161,6 +188,9 @@ namespace LD37.GameLevels
             spriteBatch.End();
 
 
+            spriteBatch.Begin();
+            canvas.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(spriteBatch);
         }
