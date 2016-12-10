@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="LD37.Entities.Entity" Collapsed="true">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQQAAQAAEAAAwAAAAAAIAAAADAEAACgAAAAAAAAAAQ=</HashCode>
+      <FileName>Entities\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Entities.Map" Collapsed="true">
+    <Position X="24.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAQAAAwAAAABAAAAAAgAAAQAACAAAAAAAAAQ=</HashCode>
+      <FileName>Entities\Maps\Map.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Entities.Tile" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAABAAAAAAAwAAACAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Entities\Tiles\Tile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Entities.Machines.AirPump" Collapsed="true">
+    <Position X="14.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQUCAIAAIAAAAAAAAEAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Entities\Machines\AirPump.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Entities.Machines.Assembler" Collapsed="true">
+    <Position X="17" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQUCAIAAIAAAAAAAAAABAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Entities\Machines\Assembler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Entities.Machines.Machine" Collapsed="true">
+    <Position X="15.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Machines\Machine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Entities.Machines.MachineFactory" Collapsed="true">
+    <Position X="23" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIIAAAAAAAAAIAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Entities\Machines\MachineFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Entities.Resources.Battery" Collapsed="true">
+    <Position X="8" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Resources\Battery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Entities.Resources.Leather" Collapsed="true">
+    <Position X="10.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Resources\Leather.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Entities.Resources.Plastic" Collapsed="true">
+    <Position X="12.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Resources\Plastic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Entities.Resources.Resource" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Resources\Resource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Entities.Resources.Toys.SoccerBall" Collapsed="true">
+    <Position X="5.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Resources\Toys\SoccerBall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Entities.Resources.Toys.Toy" Collapsed="true">
+    <Position X="4.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Resources\Toys\Toy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Entities.Resources.Toys.ToyFactory" Collapsed="true">
+    <Position X="23" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAIAAAAgAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Resources\Toys\ToyFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Entities.Resources.Toys.ToyRobot" Collapsed="true">
+    <Position X="3.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Resources\Toys\ToyRobot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Game1" Collapsed="true">
+    <Position X="24.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEEAAAAAAAwAAAAAAAAAAAAAAAAgAAAAAAAAAAAQ=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Program" Collapsed="true">
+    <Position X="19.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.GameLevels.GameLevel" Collapsed="true">
+    <Position X="9.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>GameLevels\GameLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.GameLevels.MainLevel" Collapsed="true">
+    <Position X="8.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgQAFAAAAoAAAwABAAAAAAACAAgAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>GameLevels\MainLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.GameLevels.MenuLevel" Collapsed="true">
+    <Position X="10.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQABABAQoAAAwAAAAAAAAACAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>GameLevels\MenuLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Graphics.Animation" Collapsed="true">
+    <Position X="19.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAABAgQAAAgAAAAEAAASAABAAQAAgAAAAIAAAAAA=</HashCode>
+      <FileName>Graphics\Animation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Managers.Camera" Collapsed="true">
+    <Position X="21.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAABACAIBAAACAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Managers\Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Managers.ConstructionManager" Collapsed="true">
+    <Position X="23" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAIAQAAAAAAAEAA=</HashCode>
+      <FileName>Managers\ConstructionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Managers.InputManager" Collapsed="true">
+    <Position X="19.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAQAAAEEAAAAAAAACIABAAEAAQAABCIIBAAA=</HashCode>
+      <FileName>Managers\InputManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.Managers.LevelManager" Collapsed="true">
+    <Position X="21.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAABAAAAAAAAQBAAAAARAAAAAAAAAA=</HashCode>
+      <FileName>Managers\LevelManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.UI.MainMenuCanvas" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\CustomCanvas\MainMenuCanvas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.UI.UIButton" Collapsed="true">
+    <Position X="5.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAAAAAAAAAAwAAAIAAAAAAABAAAAAIAAAAAAAAAIQ=</HashCode>
+      <FileName>UI\UIButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.UI.UICanvas" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAAAwAAAAAAAAAACAABAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>UI\UICanvas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.UI.UIElement" Collapsed="true">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>UI\UIElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.UI.UIPanel" Collapsed="true">
+    <Position X="0.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQCAAAAAAAAAxAAAIAAAAAAABABAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>UI\UIPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LD37.UI.UIText" Collapsed="true">
+    <Position X="3" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAwAAAAAAIAAAAAAAAAAIAAAAAAAAAAQ=</HashCode>
+      <FileName>UI\UIText.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Utilities.ReadJson" Collapsed="true">
+    <Position X="21.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAEAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\ReadJson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="LD37.Managers.MouseButton" Collapsed="true">
+    <Position X="19.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACACQAAAAAAA=</HashCode>
+      <FileName>Managers\InputManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

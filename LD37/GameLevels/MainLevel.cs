@@ -91,7 +91,7 @@ namespace LD37.GameLevels
             mouseText.position = InputManager.Instance.getMousePos();
             mouseText.text = "Mouse Pos: " + InputManager.Instance.getMousePos();
 
-            constructionManager.Update();
+            constructionManager.Update(cam.GetViewMatrix());
 
             if (InputManager.Instance.isDown(Keys.F))
             {
