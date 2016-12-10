@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using LD37.Managers;
 using LD37.Entities;
 using CoreGame.Utilities;
+using Microsoft.Xna.Framework.Input;
 
 namespace LD37.GameLevels
 {
@@ -37,6 +38,27 @@ namespace LD37.GameLevels
 
         public override void Update(GameTime gameTime)
         {
+
+            if (InputManager.Instance.isDown(Keys.W))
+            {
+                cam.position += new Vector2(0, -1);
+            }
+
+            if (InputManager.Instance.isDown(Keys.S))
+            {
+                cam.position += new Vector2(0, 1);
+            }
+
+            if (InputManager.Instance.isDown(Keys.D))
+            {
+                cam.position += new Vector2(1, 0);
+            }
+
+            if (InputManager.Instance.isDown(Keys.A))
+            {
+                cam.position += new Vector2(-1, 0);
+            }
+
             map.Update(gameTime);
             base.Update(gameTime);
         }
