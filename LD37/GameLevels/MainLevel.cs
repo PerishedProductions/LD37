@@ -19,6 +19,7 @@ namespace LD37.GameLevels
         Map map;
         ReadJson jsonLoader;
 
+        private ConstructionManager constructionManager = ConstructionManager.Instance;
         public ContentManager Content { get; set; }
         public List<Resource> ResourceList { get; set; } = new List<Resource>();
         public List<Machine> MachineList { get; set; } = new List<Machine>();
@@ -40,23 +41,9 @@ namespace LD37.GameLevels
         public override void LoadContent(ContentManager content)
         {
             ToyFactory.Instance.LevelInstance = this;
+            MachineFactory.Instace.LevelInstance = this;
+
             Content = content;
-
-            Machine machine = new AirPump();
-            machine.spriteName = "Window";
-            machine.LoadContent(content);
-            machine.RotationInDegrees = 0;
-            machine.position = new Vector2(300, 100);
-            machine.SpriteColor = Color.Gray;
-            MachineList.Add(machine);
-
-            machine = new Assembler();
-            machine.spriteName = "Window";
-            machine.LoadContent(content);
-            machine.RotationInDegrees = 0;
-            machine.position = new Vector2(300, 200);
-            machine.SpriteColor = Color.Gray;
-            MachineList.Add(machine);
 
             Resource resource = new Leather();
             resource.spriteName = "Window";
@@ -84,11 +71,14 @@ namespace LD37.GameLevels
 
 
             map.LoadContent(content);
+
+            constructionManager.Tiles = map.tiles;
             base.LoadContent(content);
         }
 
         public override void Update(GameTime gameTime)
         {
+            constructionManager.Update();
 
             if (InputManager.Instance.isDown(Keys.W))
             {
