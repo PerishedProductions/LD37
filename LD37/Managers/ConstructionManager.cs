@@ -28,11 +28,11 @@ namespace LD37.Managers
 
         }
 
-        public void Update()
+        public void Update(Matrix viewmatrix)
         {
             if (InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
-                var mousePos = InputManager.Instance.getMousePos();
+                var mousePos = Vector2.Transform(InputManager.Instance.getMousePos(), Matrix.Invert(viewmatrix));
 
                 Rectangle rect = new Rectangle((int)mousePos.X, (int)mousePos.Y, 1, 1);
 

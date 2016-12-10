@@ -91,7 +91,7 @@ namespace LD37.GameLevels
             mouseText.position = InputManager.Instance.getMousePos();
             mouseText.text = "Mouse Pos: " + InputManager.Instance.getMousePos();
 
-            constructionManager.Update();
+            constructionManager.Update(cam.GetViewMatrix());
 
             if (InputManager.Instance.isDown(Keys.F))
             {
@@ -151,7 +151,7 @@ namespace LD37.GameLevels
             for (int i = ResourceList.Count - 1; i >= 0; i--)
             {
                 ResourceList[i].Update(gameTime);
-                ResourceList[i].position += new Vector2(0.1f, 0);
+                ResourceList[i].position += new Vector2(1f, 0);
                 foreach (var Machine in MachineList)
                 {
                     if (Machine.CheckCollision(ResourceList[i]))

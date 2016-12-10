@@ -19,8 +19,8 @@ namespace LD37.Entities.Resources.Toys
 
             newSoccerBall.position = position;
             newSoccerBall.RotationInDegrees = 0;
-            newSoccerBall.SpriteColor = Color.Black;
-            newSoccerBall.spriteName = "Window";
+            newSoccerBall.SpriteColor = Color.White;
+            newSoccerBall.spriteName = "Football";
             newSoccerBall.LoadContent(LevelInstance.Content);
 
             LevelInstance.ResourceList.Add(newSoccerBall);
@@ -34,8 +34,8 @@ namespace LD37.Entities.Resources.Toys
 
             newToyRobot.position = position;
             newToyRobot.RotationInDegrees = 0;
-            newToyRobot.SpriteColor = Color.Yellow;
-            newToyRobot.spriteName = "Window";
+            newToyRobot.SpriteColor = Color.White;
+            newToyRobot.spriteName = "Robot";
             newToyRobot.LoadContent(LevelInstance.Content);
 
             LevelInstance.ResourceList.Add(newToyRobot);
