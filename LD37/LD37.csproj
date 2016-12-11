@@ -55,6 +55,8 @@
     <Compile Include="Entities\Resources\Toys\Toy.cs" />
     <Compile Include="Entities\Resources\Toys\ToyFactory.cs" />
     <Compile Include="Entities\Resources\Toys\ToyRobot.cs" />
+    <Compile Include="Entities\Tiles\ExportTile.cs" />
+    <Compile Include="Entities\Tiles\ImportTile.cs" />
     <Compile Include="Entities\Tiles\Tile.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameLevels\GameLevel.cs" />

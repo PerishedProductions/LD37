@@ -41,6 +41,20 @@ namespace LD37.Entities
                         newTile.Initialize();
                         tiles.Add(newTile);
                     }
+                    if (tile == "2")
+                    {
+                        Tile newTile = new ImportTile();
+                        newTile.position = new Vector2(x * tileSize, y * tileSize);
+                        newTile.Initialize();
+                        tiles.Add(newTile);
+                    }
+                    if (tile == "3")
+                    {
+                        Tile newTile = new ExportTile();
+                        newTile.position = new Vector2(x * tileSize, y * tileSize);
+                        newTile.Initialize();
+                        tiles.Add(newTile);
+                    }
                 }
             }
 

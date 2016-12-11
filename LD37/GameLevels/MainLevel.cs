@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace LD37.GameLevels
 {
@@ -17,7 +18,6 @@ namespace LD37.GameLevels
     {
 
         UICanvas canvas;
-        UIText mouseText;
 
         Camera cam;
         Map map;
@@ -56,7 +56,6 @@ namespace LD37.GameLevels
             MainGameCanvas tempCanvas = (MainGameCanvas)canvas;
             tempCanvas.constructionManager = constructionManager;
             canvas.LoadContent(content);
-            mouseText = (UIText)canvas.CreateUIElement(new UIText(Vector2.Zero, "Mouse Pos"));
 
             Resource resource = new Leather();
             resource.spriteName = "Window";
@@ -91,9 +90,6 @@ namespace LD37.GameLevels
 
         public override void Update(GameTime gameTime)
         {
-            mouseText.position = InputManager.Instance.getMousePos();
-            mouseText.text = "Mouse Pos: " + InputManager.Instance.getMousePos();
-
             constructionManager.Update(cam.GetViewMatrix());
 
             if (InputManager.Instance.isDown(Keys.F))
@@ -121,7 +117,7 @@ namespace LD37.GameLevels
                 constructionManager.BuildMode = ConstructionManager.BuildingMode.SortingMachine;
             }
 
-            if (InputManager.Instance.isDown(Keys.R))
+            if (InputManager.Instance.isPressed(Keys.R))
             {
                 switch (constructionManager.BuildDirection)
                 {
@@ -140,6 +136,7 @@ namespace LD37.GameLevels
                     default:
                         break;
                 }
+                Debug.WriteLine("Build Direction: " + constructionManager.BuildDirection);
             }
 
             if (InputManager.Instance.isDown(Keys.W))

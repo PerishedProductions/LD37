@@ -147,8 +147,6 @@ namespace LD37.UI
                 }
             }
 
-            Debug.WriteLine(imp.mouseOver);
-
             base.Update(gameTime);
         }
     }
