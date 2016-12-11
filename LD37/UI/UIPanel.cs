@@ -55,6 +55,10 @@ namespace LD37.UI
         {
             if (visible)
             {
+                for (int i = 0; i < elements.Count; i++)
+                {
+                    elements[i].Update(gameTime);
+                }
             }
         }
 

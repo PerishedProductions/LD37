@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using LD37.Entities.Resources;
 
 namespace LD37.UI
 {
@@ -34,7 +35,21 @@ namespace LD37.UI
         UIButton sellMachine;
 
         UIPanel impWin;
-        UIPanel resWin;
+        UIPanel batteryPanel;
+        UIPanel leatherPanel;
+        UIPanel plasticPanel;
+
+        UIText batteryTitle;
+        UIText leatherTitle;
+        UIText plasticTitle;
+
+        UIText batteryCost;
+        UIText leatherCost;
+        UIText plasticCost;
+
+        UIButton batteryButton;
+        UIButton leatherButton;
+        UIButton plasticButton;
 
         UIText impTitle;
         UIText resTitle;
@@ -79,6 +94,9 @@ namespace LD37.UI
         int machine3W = 280;
         int machine3H = 40;
 
+        int impItemPanleW = 800;
+        int impItemPanleH = 50;
+
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
@@ -96,11 +114,23 @@ namespace LD37.UI
 
             impWin = (UIPanel)CreateUIElement(new UIPanel(new Rectangle(windowWidth / 2 - impWindowW / 2, windowHeight / 2 - impWindowH / 2, impWindowW, impWindowH)));
             impWin.visible = false;
-            impTitle = (UIText)impWin.CreateUIElement(new UIText(new Vector2(impWin.size.X + impWindowW / 2 - 350 / 2, impWin.size.Y + padding), "Import Elf Department"));
+            impTitle = (UIText)impWin.CreateUIElement(new UIText(new Vector2(impWin.size.X + impWindowW / 2 - 350 / 2, impWin.size.Y + 40 + padding), "Import Elf Department"));
 
-            resWin = (UIPanel)CreateUIElement(new UIPanel(new Rectangle(windowWidth / 2 - resWindowW / 2, windowHeight / 2 - resWindowH / 2, resWindowW, resWindowH)));
-            resWin.visible = false;
-            resTitle = (UIText)resWin.CreateUIElement(new UIText(new Vector2(impWin.size.X + impWindowW / 2 - 350 / 2, impWin.size.Y + padding), "Research Elf Department"));
+            batteryPanel = (UIPanel)impWin.CreateUIElement(new UIPanel(new Rectangle(impWin.size.X + impWindowW / 2 - impItemPanleW / 2, impH + 150, impItemPanleW, impItemPanleH), WindowTheme.Light));
+            batteryTitle = (UIText)batteryPanel.CreateUIElement(new UIText(new Vector2(impWin.size.X + impWindowW / 2 - impItemPanleW / 2 + padding, impH + 150 + padding), "Battery"));
+            batteryCost = (UIText)batteryPanel.CreateUIElement(new UIText(new Vector2(impWin.size.X + impWindowW / 2 - impItemPanleW / 2 + padding + 200, impH + 150 + padding), Battery.BatteryPrice.ToString() + "$"));
+            batteryButton = (UIButton)batteryPanel.CreateUIElement(new UIButton("Order", new Rectangle(impWin.size.X + impWindowW - 200 - padding, impH + 150 + padding / 2, 100, 45), new Vector2(10, 2.5f)));
+
+            leatherPanel = (UIPanel)impWin.CreateUIElement(new UIPanel(new Rectangle(impWin.size.X + impWindowW / 2 - impItemPanleW / 2, impH * 2 + 150 + padding, impItemPanleW, impItemPanleH), WindowTheme.Light));
+            leatherTitle = (UIText)leatherPanel.CreateUIElement(new UIText(new Vector2(impWin.size.X + impWindowW / 2 - impItemPanleW / 2 + padding, impH * 2 + 150 + padding * 2), "Leather"));
+            leatherCost = (UIText)leatherPanel.CreateUIElement(new UIText(new Vector2(impWin.size.X + impWindowW / 2 - impItemPanleW / 2 + padding + 200, impH * 2 + 150 + padding * 2), Leather.LeatherPrice.ToString() + "$"));
+            leatherButton = (UIButton)leatherPanel.CreateUIElement(new UIButton("Order", new Rectangle(impWin.size.X + impWindowW - 200 - padding, impH * 2 + 150 + padding / 2 * 4, 100, 45), new Vector2(10, 2.5f)));
+
+            plasticPanel = (UIPanel)impWin.CreateUIElement(new UIPanel(new Rectangle(impWin.size.X + impWindowW / 2 - impItemPanleW / 2, impH * 3 + 150 + padding * 2, impItemPanleW, impItemPanleH), WindowTheme.Light));
+            plasticTitle = (UIText)plasticPanel.CreateUIElement(new UIText(new Vector2(impWin.size.X + impWindowW / 2 - impItemPanleW / 2 + padding, impH * 3 + 150 + padding * 3), "Plastic"));
+            plasticCost = (UIText)plasticPanel.CreateUIElement(new UIText(new Vector2(impWin.size.X + impWindowW / 2 - impItemPanleW / 2 + padding + 200, impH * 3 + 150 + padding * 3), Plastic.PlasticPrice.ToString() + "$"));
+            plasticButton = (UIButton)plasticPanel.CreateUIElement(new UIButton("Order", new Rectangle(impWin.size.X + impWindowW - 200 - padding, impH * 3 + 150 + padding / 2 * 6, 100, 45), new Vector2(10, 2.5f)));
+
 
             buildPanel = (UIPanel)CreateUIElement(new UIPanel(new Rectangle(0, windowHeight - menuBtnH, windowWidth - menuBtnW, menuBtnH)));
             buildPanel.visible = false;
@@ -123,9 +153,12 @@ namespace LD37.UI
             buildRotation.text = "Build Direction: " + constructionManager.BuildDirection;
 
             imp.Update(gameTime);
+            impWin.Update(gameTime);
             enterBuildMode.Update(gameTime);
             exitBuildMode.Update(gameTime);
             sellMachine.Update(gameTime);
+
+            base.Update(gameTime);
 
             for (int i = 0; i < machines.Count; i++)
             {
@@ -136,64 +169,103 @@ namespace LD37.UI
             {
                 constructionManager.BuildMode = ConstructionManager.BuildingMode.AirPump;
                 mainPanel.visible = false;
+                return;
             }
 
             if (machines[1].mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
                 constructionManager.BuildMode = ConstructionManager.BuildingMode.Assembler;
                 mainPanel.visible = false;
+                return;
             }
 
             if (machines[2].mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
                 constructionManager.BuildMode = ConstructionManager.BuildingMode.TransportBelt;
                 mainPanel.visible = false;
+                return;
             }
 
-            if (imp.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+            if (isBuilding)
             {
-                Debug.WriteLine("ButtonPressed");
-                impWin.visible = true;
-                resWin.visible = false;
+                if (exitBuildMode.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    Debug.WriteLine("Exit Build Mode Pressed");
+                    mainPanel.visible = true;
+                    buildPanel.visible = false;
+                    isBuilding = false;
+                    return;
+                }
             }
 
             if (enterBuildMode.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
-                Debug.WriteLine("ButtonPressed");
+                Debug.WriteLine("Enter Build Mode Pressed");
                 mainPanel.visible = false;
                 buildPanel.visible = true;
                 isBuilding = true;
+                return;
             }
 
-            if (exitBuildMode.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+            if (imp.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
-                if (isBuilding)
-                {
-                    Debug.WriteLine("ButtonPressed");
-                    mainPanel.visible = true;
-                    buildPanel.visible = false;
-                    isBuilding = false;
-                }
+                Debug.WriteLine("Import Button Pressed");
+                impWin.visible = !impWin.visible;
+                return;
             }
 
             if (openMenu.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
-                Debug.WriteLine("ButtonPressed");
-                if (!isBuilding)
+                Debug.WriteLine("Menu Button Pressed");
+                mainPanel.visible = !mainPanel.visible;
+
+                if (mainPanel.visible)
                 {
-                    mainPanel.visible = !mainPanel.visible;
-
-                    if (mainPanel.visible)
-                    {
-                        impWin.visible = false;
-                        resWin.visible = false;
-
-                        constructionManager.BuildMode = ConstructionManager.BuildingMode.None;
-                    }
+                    impWin.visible = false;
+                    constructionManager.BuildMode = ConstructionManager.BuildingMode.None;
                 }
+                return;
             }
 
-            base.Update(gameTime);
+
+            if (impWin.visible)
+            {
+                if (batteryButton.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    if (Battery.BatteryPrice <= StatManager.Instance.GetMoney)
+                    {
+                        ImportManager.Instance.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Battery);
+                        StatManager.Instance.RemoveMoney(Battery.BatteryPrice);
+                        Debug.WriteLine("Add Battery to Importer");
+                    }
+                    impWin.visible = false;
+                    return;
+                }
+
+                if (leatherButton.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    if (Leather.LeatherPrice <= StatManager.Instance.GetMoney)
+                    {
+                        ImportManager.Instance.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Leather);
+                        StatManager.Instance.RemoveMoney(Leather.LeatherPrice);
+                        Debug.WriteLine("Add Leather to Importer");
+                    }
+                    impWin.visible = false;
+                    return;
+                }
+
+                if (plasticButton.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    if (Plastic.PlasticPrice <= StatManager.Instance.GetMoney)
+                    {
+                        ImportManager.Instance.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Plastic);
+                        StatManager.Instance.RemoveMoney(Plastic.PlasticPrice);
+                        Debug.WriteLine("Add Plastic to Importer");
+                    }
+                    impWin.visible = false;
+                    return;
+                }
+            }
         }
     }
 }
