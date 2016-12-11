@@ -23,8 +23,8 @@ namespace LD37.Entities
             get
             {
                 return new Rectangle(
-                    (int)position.X - sprite.Width / 2,
-                    (int)position.Y - sprite.Height / 2,
+                    (int)position.X,
+                    (int)position.Y,
                     sprite.Width,
                     sprite.Height);
             }
@@ -52,8 +52,10 @@ namespace LD37.Entities
         //Draws the sprite at its position
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            float rotationInRadians = MathHelper.ToRadians(RotationInDegrees);
+
             spriteBatch.Begin();
-            spriteBatch.Draw(sprite, new Rectangle((int)position.X, (int)position.Y, sprite.Width, sprite.Height), null, SpriteColor, RotationInDegrees, new Vector2(0, 0), SpriteEffects.None, 0);
+            spriteBatch.Draw(sprite, new Rectangle((int)position.X, (int)position.Y, sprite.Width, sprite.Height), null, SpriteColor, rotationInRadians, new Vector2(0, 0), SpriteEffects.None, 0);
             spriteBatch.End();
         }
     }

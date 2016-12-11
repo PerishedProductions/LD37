@@ -13,12 +13,21 @@ namespace LD37.Managers
         public List<Tile> Tiles { get; set; }
 
         public BuildingMode BuildMode { get; set; } = BuildingMode.None;
+        public BuildingDirection BuildDirection { get; set; } = BuildingDirection.RIGHT;
+
+        public enum BuildingDirection
+        {
+            UP,
+            LEFT,
+            RIGHT,
+            DOWN
+        }
 
         public enum BuildingMode
         {
             None,
             Sell,
-            Conveyor,
+            TransportBelt,
             AirPump,
             Assembler
         }
@@ -50,15 +59,22 @@ namespace LD37.Managers
                             case BuildingMode.Sell:
                                 if (item.Building != null)
                                 {
+                                    Debug.WriteLine($"Sold building");
                                     item.Building.Active = false;
                                     item.Building = null;
                                 }
                                 break;
-                            case BuildingMode.Conveyor:
+                            case BuildingMode.TransportBelt:
+                                if (item.Building == null)
+                                {
+                                    Debug.WriteLine($"Build transportbelt");
+                                    item.Building = MachineFactory.Instace.CreateTransportBelt(pos, BuildDirection);
+                                }
                                 break;
                             case BuildingMode.AirPump:
                                 if (item.Building == null)
                                 {
+                                    Debug.WriteLine($"Build AirPump");
                                     item.Building = MachineFactory.Instace.CreateAirPump(pos);
                                 }
 
@@ -66,7 +82,8 @@ namespace LD37.Managers
                             case BuildingMode.Assembler:
                                 if (item.Building == null)
                                 {
-                                    MachineFactory.Instace.CreateAssembler(pos);
+                                    Debug.WriteLine($"Build Assembler");
+                                    item.Building = MachineFactory.Instace.CreateAssembler(pos);
                                 }
                                 break;
                             default:

@@ -111,6 +111,32 @@ namespace LD37.GameLevels
                 constructionManager.BuildMode = ConstructionManager.BuildingMode.Sell;
             }
 
+            if (InputManager.Instance.isDown(Keys.J))
+            {
+                constructionManager.BuildMode = ConstructionManager.BuildingMode.TransportBelt;
+            }
+
+            if (InputManager.Instance.isDown(Keys.R))
+            {
+                switch (constructionManager.BuildDirection)
+                {
+                    case ConstructionManager.BuildingDirection.UP:
+                        constructionManager.BuildDirection = ConstructionManager.BuildingDirection.RIGHT;
+                        break;
+                    case ConstructionManager.BuildingDirection.LEFT:
+                        constructionManager.BuildDirection = ConstructionManager.BuildingDirection.UP;
+                        break;
+                    case ConstructionManager.BuildingDirection.RIGHT:
+                        constructionManager.BuildDirection = ConstructionManager.BuildingDirection.DOWN;
+                        break;
+                    case ConstructionManager.BuildingDirection.DOWN:
+                        constructionManager.BuildDirection = ConstructionManager.BuildingDirection.LEFT;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             if (InputManager.Instance.isDown(Keys.W))
             {
                 cam.position += new Vector2(0, -3);
@@ -154,12 +180,18 @@ namespace LD37.GameLevels
             for (int i = ResourceList.Count - 1; i >= 0; i--)
             {
                 ResourceList[i].Update(gameTime);
-                ResourceList[i].position += new Vector2(1f, 0);
+
                 foreach (var Machine in MachineList)
                 {
                     if (Machine.CheckCollision(ResourceList[i]))
                     {
                         Machine.HandleCollision(ResourceList[i]);
+
+                        if (!(Machine is TransportBelt))
+                        {
+                            break;
+                        }
+
                     }
                 }
 
