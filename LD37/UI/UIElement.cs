@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 
+public enum WindowTheme { Dark, Light }
+
 namespace LD37.UI
 {
     public class UIElement

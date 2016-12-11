@@ -9,11 +9,10 @@ namespace LD37.Entities
     public class Tile : Entity
     {
         public Machine Building { get; set; }
-        Animation belt;
 
         public override void Initialize()
         {
-            spriteName = "TransportBelt";
+            spriteName = "Tile";
             base.Initialize();
         }
 
@@ -21,20 +20,17 @@ namespace LD37.Entities
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
-            belt = new Animation(sprite, 64, 64, 3, 100, true);
         }
 
         public override void Update(GameTime gameTime)
         {
-            belt.Update(gameTime, position);
             base.Update(gameTime);
         }
 
         //Draws the sprite at its position
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(sprite, position);
-            belt.Draw(spriteBatch);
+            spriteBatch.Draw(sprite, position);
         }
 
     }

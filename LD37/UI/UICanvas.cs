@@ -13,7 +13,7 @@ namespace LD37.UI
 
         ContentManager content;
 
-        public void Initialize()
+        public virtual void Initialize()
         {
             for (int i = 0; i < uiElements.Count; i++)
             {
@@ -21,7 +21,7 @@ namespace LD37.UI
             }
         }
 
-        public void LoadContent(ContentManager content)
+        public virtual void LoadContent(ContentManager content)
         {
             this.content = content;
             for (int i = 0; i < uiElements.Count; i++)
@@ -30,7 +30,7 @@ namespace LD37.UI
             }
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             for (int i = 0; i < uiElements.Count; i++)
             {
@@ -38,7 +38,7 @@ namespace LD37.UI
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < uiElements.Count; i++)
             {

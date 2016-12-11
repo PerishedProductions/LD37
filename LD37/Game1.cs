@@ -51,6 +51,7 @@ namespace LD37
             //Centers the screem
             this.Window.Position = new Point(GraphicsDevice.DisplayMode.Width - (GraphicsDevice.DisplayMode.Width / 2) - (graphics.PreferredBackBufferWidth / 2), GraphicsDevice.DisplayMode.Height - (GraphicsDevice.DisplayMode.Height / 2) - (graphics.PreferredBackBufferHeight / 2));
 
+            LevelManager.Instance.game = this;
             LevelManager.Instance.content = Content;
             LevelManager.Instance.ChangeLevel(new MenuLevel());
         }
@@ -71,11 +72,7 @@ namespace LD37
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
             LevelManager.Instance.currentLevel.Update(gameTime);
-
 
             base.Update(gameTime);
         }

@@ -34,7 +34,7 @@ namespace LD37.GameLevels
             map = new Map(jsonLoader.ReadData("Data/Map.json"));
             map.Initialize();
 
-            canvas = new UICanvas();
+            canvas = new MainGameCanvas();
             canvas.Initialize();
 
             base.Initialize();
@@ -167,6 +167,7 @@ namespace LD37.GameLevels
             }
 
             map.Update(gameTime);
+            canvas.Update(gameTime);
             base.Update(gameTime);
         }
 

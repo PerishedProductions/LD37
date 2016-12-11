@@ -28,6 +28,8 @@ namespace LD37.Managers
 
         public GameLevel currentLevel;
 
+        public Game1 game;
+
         public void ChangeLevel(GameLevel level)
         {
             currentLevel = level;
@@ -35,6 +37,11 @@ namespace LD37.Managers
             GameLevel temp = (GameLevel)currentLevel;
             temp.InitializeCam(viewport);
             currentLevel.LoadContent(content);
+        }
+
+        public void Exit()
+        {
+            game.Exit();
         }
     }
 }

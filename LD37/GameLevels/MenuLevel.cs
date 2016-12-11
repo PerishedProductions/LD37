@@ -14,7 +14,6 @@ namespace LD37.GameLevels
     {
 
         UICanvas canvas;
-        UIButton button;
         UIText mouseText;
 
         Texture2D title;
@@ -25,7 +24,7 @@ namespace LD37.GameLevels
 
         public override void Initialize()
         {
-            canvas = new UICanvas();
+            canvas = new MainMenuCanvas();
             canvas.Initialize();
         }
 
@@ -40,7 +39,6 @@ namespace LD37.GameLevels
         public override void LoadContent(ContentManager content)
         {
             canvas.LoadContent(content);
-            button = (UIButton)canvas.CreateUIElement(new UIButton("Play Game", new Rectangle(100, 100, 400, 200)));
             mouseText = (UIText)canvas.CreateUIElement(new UIText(Vector2.Zero, "Mouse Pos"));
             title = content.Load<Texture2D>("Title");
             bgMsucic = content.Load<Song>("TestyTest");
@@ -53,12 +51,6 @@ namespace LD37.GameLevels
             mouseText.position = InputManager.Instance.getMousePos();
             mouseText.text = "Mouse Pos: " + InputManager.Instance.getMousePos();
             canvas.Update(gameTime);
-
-            if (button.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
-            {
-                Debug.WriteLine("Button Is Pressed");
-                LevelManager.Instance.ChangeLevel(new MainLevel());
-            }
 
             base.Update(gameTime);
         }

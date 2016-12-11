@@ -64,6 +64,7 @@
     <Compile Include="Managers\LevelManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\CustomCanvas\MainGameCanvas.cs" />
     <Compile Include="UI\CustomCanvas\MainMenuCanvas.cs" />
     <Compile Include="UI\UIButton.cs" />
     <Compile Include="UI\UICanvas.cs" />
@@ -103,6 +104,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Data\Map.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
