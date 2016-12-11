@@ -4,18 +4,13 @@ namespace LD37.Entities.Resources.Toys
 {
     public class ToyRobot : Toy
     {
-        private int _price = 500;
+        public const int ToyRobotPrice = 500;
 
         public override int Price
         {
             get
             {
-                return _price;
-            }
-
-            set
-            {
-                _price = value;
+                return ToyRobotPrice;
             }
         }
 
