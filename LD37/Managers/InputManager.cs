@@ -57,6 +57,11 @@ namespace LD37.Managers
             return mouseState.Position.ToVector2();
         }
 
+        public Vector2 getMouseWorldPos(Matrix viewmatrix)
+        {
+            return Vector2.Transform(mouseState.Position.ToVector2(), Matrix.Invert(viewmatrix));
+        }
+
         public bool mouseIsPressed(MouseButton mouseButton)
         {
             switch (mouseButton)

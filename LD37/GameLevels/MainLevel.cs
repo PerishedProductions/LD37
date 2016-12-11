@@ -52,6 +52,9 @@ namespace LD37.GameLevels
             MachineFactory.Instace.LevelInstance = this;
 
             Content = content;
+
+            MainGameCanvas tempCanvas = (MainGameCanvas)canvas;
+            tempCanvas.constructionManager = constructionManager;
             canvas.LoadContent(content);
             mouseText = (UIText)canvas.CreateUIElement(new UIText(Vector2.Zero, "Mouse Pos"));
 

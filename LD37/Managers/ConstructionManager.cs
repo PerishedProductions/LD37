@@ -32,7 +32,7 @@ namespace LD37.Managers
         {
             if (InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
-                var mousePos = Vector2.Transform(InputManager.Instance.getMousePos(), Matrix.Invert(viewmatrix));
+                var mousePos = InputManager.Instance.getMouseWorldPos(viewmatrix);
 
                 Rectangle rect = new Rectangle((int)mousePos.X, (int)mousePos.Y, 1, 1);
 
