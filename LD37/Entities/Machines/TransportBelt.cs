@@ -66,6 +66,37 @@ namespace LD37.Entities.Machines
             currentAnim.Draw(spriteBatch);
         }
 
+        public override bool CheckCollision(Entity otherEntity)
+        {
+            bool collision = false;
+            switch (BeltDirection)
+            {
+                case BuildingDirection.UP:
+                case BuildingDirection.DOWN:
+                    {
+                        collision = this.BoundingBox.Center.X == otherEntity.BoundingBox.Center.X;
+                        break;
+                    }
+
+
+                case BuildingDirection.RIGHT:
+                case BuildingDirection.LEFT:
+                    {
+                        collision = this.BoundingBox.Center.Y == otherEntity.BoundingBox.Center.Y;
+                        break;
+                    }
+
+                default:
+                    {
+                        collision = false;
+                        break;
+                    }
+
+            }
+
+            return collision && this.BoundingBox.Intersects(otherEntity.BoundingBox);
+        }
+
         public override void HandleCollision(Entity otherEntity)
         {
             if (otherEntity is Resource)

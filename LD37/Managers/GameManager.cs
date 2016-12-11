@@ -7,7 +7,7 @@ namespace LD37.Managers
     public class GameManager
     {
         public static GameManager Instance { get; set; } = new GameManager();
-        private const int TotalGameLength = 1 * 60 * 1000;
+        private const int TotalGameLength = 5 * 60 * 1000;
 
         public int GameLength { get; set; } = TotalGameLength;
 
