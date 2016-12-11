@@ -23,8 +23,8 @@ namespace LD37.Entities
             get
             {
                 return new Rectangle(
-                    (int)position.X - sprite.Width / 2,
-                    (int)position.Y - sprite.Height / 2,
+                    (int)position.X,
+                    (int)position.Y,
                     sprite.Width,
                     sprite.Height);
             }

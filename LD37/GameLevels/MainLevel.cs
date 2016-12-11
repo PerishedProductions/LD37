@@ -157,6 +157,7 @@ namespace LD37.GameLevels
                     if (Machine.CheckCollision(ResourceList[i]))
                     {
                         Machine.HandleCollision(ResourceList[i]);
+                        break;
                     }
                 }
 
