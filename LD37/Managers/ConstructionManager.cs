@@ -29,7 +29,8 @@ namespace LD37.Managers
             Sell,
             TransportBelt,
             AirPump,
-            Assembler
+            Assembler,
+            SortingMachine
         }
 
         private ConstructionManager()
@@ -86,6 +87,16 @@ namespace LD37.Managers
                                     item.Building = MachineFactory.Instace.CreateAssembler(pos);
                                 }
                                 break;
+
+                            case BuildingMode.SortingMachine:
+                                {
+                                    if (item.Building == null)
+                                    {
+                                        Debug.WriteLine($"Build SortingMachine");
+                                        item.Building = MachineFactory.Instace.CreateSortingMachine(pos);
+                                    }
+                                    break;
+                                }
                             default:
                                 break;
                         }
