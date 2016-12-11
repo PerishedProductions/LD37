@@ -57,5 +57,20 @@ namespace LD37.Entities.Resources
 
             return battery;
         }
+
+        public Resource CreateScrap(Vector2 position)
+        {
+            Scrap scrap = new Scrap();
+
+            scrap.spriteName = "Window";
+            scrap.RotationInDegrees = 0;
+            scrap.position = position;
+            scrap.SpriteColor = Color.Cyan;
+            scrap.LoadContent(LevelInstance.Content);
+
+            LevelInstance.ResourceList.Add(scrap);
+
+            return scrap;
+        }
     }
 }
