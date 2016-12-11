@@ -57,7 +57,7 @@ namespace LD37.UI
         int machine1W = 170;
         int machine1H = 40;
 
-        int machine2W = 70;
+        int machine2W = 280;
         int machine2H = 40;
 
         public override void LoadContent(ContentManager content)
@@ -82,7 +82,7 @@ namespace LD37.UI
 
             machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Air Pump", new Rectangle(windowWidth - menuBtnW - machine0W - padding, windowHeight - machine0H, machine0W, machine0H), new Vector2(10, 0), WindowTheme.Dark)));
             machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Assembler", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - padding * 2, windowHeight - machine1H, machine1W, machine1H), new Vector2(10, 0), WindowTheme.Dark)));
-            machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Sell", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - machine2W - padding * 3, windowHeight - machine2H, machine2W, machine2H), new Vector2(10, 0), WindowTheme.Dark)));
+            machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Transporter Belt", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - machine2W - padding * 3, windowHeight - machine2H, machine2W, machine2H), new Vector2(10, 0), WindowTheme.Dark)));
         }
 
         public override void Update(GameTime gameTime)
@@ -98,16 +98,19 @@ namespace LD37.UI
             if (machines[0].mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
                 constructionManager.BuildMode = ConstructionManager.BuildingMode.AirPump;
+                mainPanel.visible = false;
             }
 
             if (machines[1].mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
                 constructionManager.BuildMode = ConstructionManager.BuildingMode.Assembler;
+                mainPanel.visible = false;
             }
 
             if (machines[2].mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
-                constructionManager.BuildMode = ConstructionManager.BuildingMode.AirPump;
+                constructionManager.BuildMode = ConstructionManager.BuildingMode.TransportBelt;
+                mainPanel.visible = false;
             }
 
             if (imp.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
@@ -135,10 +138,12 @@ namespace LD37.UI
                 Debug.WriteLine("ButtonPressed");
                 mainPanel.visible = !mainPanel.visible;
 
-                if (machinePanel.visible)
+                if (mainPanel.visible)
                 {
                     impWin.visible = false;
                     resWin.visible = false;
+
+                    constructionManager.BuildMode = ConstructionManager.BuildingMode.None;
                 }
             }
 

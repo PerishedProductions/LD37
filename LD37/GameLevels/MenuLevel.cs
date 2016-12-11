@@ -43,6 +43,7 @@ namespace LD37.GameLevels
             title = content.Load<Texture2D>("Title");
             bgMsucic = content.Load<Song>("TestyTest");
             MediaPlayer.Volume = .05f;
+            MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(bgMsucic);
         }
 
