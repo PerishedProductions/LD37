@@ -9,7 +9,7 @@ namespace LD37.UI
 {
     public class UIPanel : UIElement
     {
-        Rectangle size;
+        public Rectangle size;
 
         String textureName;
         Texture2D sprite;

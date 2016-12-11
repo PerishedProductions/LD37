@@ -18,10 +18,10 @@ namespace LD37.UI
 
         public bool mouseOver;
 
-        public UIButton(String text, Rectangle size, Vector2 textPos)
+        public UIButton(String text, Rectangle size, Vector2 textOffset)
         {
             this.size = size;
-            this.text = new UIText(new Vector2(size.X + textPos.X, size.Y + textPos.Y), text);
+            this.text = new UIText(new Vector2(size.X + textOffset.X, size.Y + textOffset.Y), text);
         }
 
         public UIButton(String text, Rectangle size, Vector2 textPos, WindowTheme theme)
