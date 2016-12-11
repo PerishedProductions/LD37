@@ -19,10 +19,10 @@ namespace LD37.Entities.Machines
         {
             AirPump machine = new AirPump();
 
-            machine.spriteName = "Window";
+            machine.spriteName = "AirPump";
             machine.RotationInDegrees = 0;
             machine.position = position;
-            machine.SpriteColor = Color.Blue;
+            machine.SpriteColor = Color.White;
             machine.LoadContent(LevelInstance.Content);
 
             LevelInstance.MachineList.Add(machine);
@@ -34,10 +34,10 @@ namespace LD37.Entities.Machines
         {
             Assembler machine = new Assembler();
 
-            machine.spriteName = "Window";
+            machine.spriteName = "Assembler";
             machine.RotationInDegrees = 0;
             machine.position = position;
-            machine.SpriteColor = Color.Gray;
+            machine.SpriteColor = Color.White;
             machine.LoadContent(LevelInstance.Content);
 
             LevelInstance.MachineList.Add(machine);

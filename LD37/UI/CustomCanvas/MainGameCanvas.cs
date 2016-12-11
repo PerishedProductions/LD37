@@ -64,6 +64,9 @@ namespace LD37.UI
         int machine2W = 280;
         int machine2H = 40;
 
+        int machine3W = 280;
+        int machine3H = 40;
+
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
@@ -77,7 +80,7 @@ namespace LD37.UI
             mainPanel.visible = false;
 
             imp = (UIButton)mainPanel.CreateUIElement(new UIButton("Import Elf", new Rectangle(0 + padding, windowHeight - impH, impW, impH), new Vector2(10, 5), WindowTheme.Light));
-            res = (UIButton)mainPanel.CreateUIElement(new UIButton("Research", new Rectangle(impW + padding * 2, windowHeight - resH, resW, resH), new Vector2(10, 5), WindowTheme.Light));
+            //res = (UIButton)mainPanel.CreateUIElement(new UIButton("Research", new Rectangle(impW + padding * 2, windowHeight - resH, resW, resH), new Vector2(10, 5), WindowTheme.Light));
 
             impWin = (UIPanel)CreateUIElement(new UIPanel(new Rectangle(windowWidth / 2 - impWindowW / 2, windowHeight / 2 - impWindowH / 2, impWindowW, impWindowH)));
             impWin.visible = false;
@@ -89,9 +92,10 @@ namespace LD37.UI
 
             machinePanel = (UIPanel)mainPanel.CreateUIElement(new UIPanel(new Rectangle(windowWidth - machinePanelW - menuBtnW - padding, windowHeight - machinePanelH, machinePanelW, machinePanelH), WindowTheme.Light));
 
-            machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Air Pump", new Rectangle(windowWidth - menuBtnW - machine0W - padding, windowHeight - machine0H, machine0W, machine0H), new Vector2(10, 0), WindowTheme.Dark)));
+            machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Air Pump", new Rectangle(windowWidth - menuBtnW - machine0W - padding * 2, windowHeight - machine0H, machine0W, machine0H), new Vector2(10, 0), WindowTheme.Dark)));
             machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Assembler", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - padding * 2, windowHeight - machine1H, machine1W, machine1H), new Vector2(10, 0), WindowTheme.Dark)));
             machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Transporter Belt", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - machine2W - padding * 3, windowHeight - machine2H, machine2W, machine2H), new Vector2(10, 0), WindowTheme.Dark)));
+            machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Sorting Machine", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - machine2W - machine3W - padding * 3, windowHeight - machine3H, machine3W, machine3H), new Vector2(10, 0), WindowTheme.Dark)));
         }
 
         public override void Update(GameTime gameTime)
@@ -101,7 +105,7 @@ namespace LD37.UI
             buildRotation.text = "Build Direction: " + constructionManager.BuildDirection;
 
             imp.Update(gameTime);
-            res.Update(gameTime);
+            //res.Update(gameTime);
 
             for (int i = 0; i < machines.Count; i++)
             {
@@ -133,18 +137,12 @@ namespace LD37.UI
                 resWin.visible = false;
             }
 
-            if (res.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+            /*if (res.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
                 Debug.WriteLine("ButtonPressed");
                 impWin.visible = false;
                 resWin.visible = true;
-            }
-
-            if (res.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
-            {
-                Debug.WriteLine("ButtonPressed");
-                impWin.visible = true;
-            }
+            }*/
 
             if (openMenu.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
