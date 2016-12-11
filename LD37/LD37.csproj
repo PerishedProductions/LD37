@@ -65,6 +65,8 @@
     <Compile Include="Graphics\Animation.cs" />
     <Compile Include="Managers\Camera.cs" />
     <Compile Include="Managers\ConstructionManager.cs" />
+    <Compile Include="Managers\ExportManager.cs" />
+    <Compile Include="Managers\ImportManager.cs" />
     <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\LevelManager.cs" />
     <Compile Include="Program.cs" />

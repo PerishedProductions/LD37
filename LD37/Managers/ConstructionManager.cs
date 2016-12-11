@@ -69,14 +69,14 @@ namespace LD37.Managers
                                 if (item.Building == null)
                                 {
                                     Debug.WriteLine($"Build transportbelt");
-                                    item.Building = MachineFactory.Instace.CreateTransportBelt(pos, BuildDirection);
+                                    item.Building = MachineFactory.Instance.CreateTransportBelt(pos, BuildDirection);
                                 }
                                 break;
                             case BuildingMode.AirPump:
                                 if (item.Building == null)
                                 {
                                     Debug.WriteLine($"Build AirPump");
-                                    item.Building = MachineFactory.Instace.CreateAirPump(pos);
+                                    item.Building = MachineFactory.Instance.CreateAirPump(pos);
                                 }
 
                                 break;
@@ -84,7 +84,7 @@ namespace LD37.Managers
                                 if (item.Building == null)
                                 {
                                     Debug.WriteLine($"Build Assembler");
-                                    item.Building = MachineFactory.Instace.CreateAssembler(pos);
+                                    item.Building = MachineFactory.Instance.CreateAssembler(pos);
                                 }
                                 break;
 
@@ -93,7 +93,7 @@ namespace LD37.Managers
                                     if (item.Building == null)
                                     {
                                         Debug.WriteLine($"Build SortingMachine");
-                                        item.Building = MachineFactory.Instace.CreateSortingMachine(pos);
+                                        item.Building = MachineFactory.Instance.CreateSortingMachine(pos);
                                     }
                                     break;
                                 }

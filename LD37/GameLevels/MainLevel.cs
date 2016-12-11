@@ -24,6 +24,8 @@ namespace LD37.GameLevels
         ReadJson jsonLoader;
 
         private ConstructionManager constructionManager = ConstructionManager.Instance;
+        private ImportManager importManager = ImportManager.Instance;
+        private ExportManager exportManager = ExportManager.Instance;
         public ContentManager Content { get; set; }
         public List<Resource> ResourceList { get; set; } = new List<Resource>();
         public List<Machine> MachineList { get; set; } = new List<Machine>();
@@ -49,38 +51,14 @@ namespace LD37.GameLevels
         public override void LoadContent(ContentManager content)
         {
             ToyFactory.Instance.LevelInstance = this;
-            MachineFactory.Instace.LevelInstance = this;
+            MachineFactory.Instance.LevelInstance = this;
+            ResourceFactory.Instance.LevelInstance = this;
 
             Content = content;
 
             MainGameCanvas tempCanvas = (MainGameCanvas)canvas;
             tempCanvas.constructionManager = constructionManager;
             canvas.LoadContent(content);
-
-            Resource resource = new Leather();
-            resource.spriteName = "Window";
-            resource.LoadContent(content);
-            resource.RotationInDegrees = 0;
-            resource.position = new Vector2(100, 100);
-            resource.SpriteColor = Color.Brown;
-            ResourceList.Add(resource);
-
-            resource = new Battery();
-            resource.spriteName = "Window";
-            resource.LoadContent(content);
-            resource.RotationInDegrees = 0;
-            resource.position = new Vector2(200, 200);
-            resource.SpriteColor = Color.Green;
-            ResourceList.Add(resource);
-
-            resource = new Plastic();
-            resource.spriteName = "Window";
-            resource.LoadContent(content);
-            resource.RotationInDegrees = 0;
-            resource.position = new Vector2(100, 200);
-            resource.SpriteColor = Color.LightGray;
-            ResourceList.Add(resource);
-
 
             map.LoadContent(content);
 
@@ -91,28 +69,33 @@ namespace LD37.GameLevels
         public override void Update(GameTime gameTime)
         {
             constructionManager.Update(cam.GetViewMatrix());
+            importManager.Update(gameTime);
+            exportManager.Update(gameTime);
 
-            if (InputManager.Instance.isDown(Keys.F))
+            if (InputManager.Instance.isPressed(Keys.F))
             {
-                constructionManager.BuildMode = ConstructionManager.BuildingMode.AirPump;
+                importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Leather);
+                Debug.WriteLine("Add Leather to Importer");
             }
 
-            if (InputManager.Instance.isDown(Keys.G))
+            if (InputManager.Instance.isPressed(Keys.G))
             {
-                constructionManager.BuildMode = ConstructionManager.BuildingMode.Assembler;
+                importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Plastic);
+                Debug.WriteLine("Add Plastic to Importer");
             }
 
-            if (InputManager.Instance.isDown(Keys.H))
+            if (InputManager.Instance.isPressed(Keys.H))
+            {
+                importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Battery);
+                Debug.WriteLine("Add Battery to Importer");
+            }
+
+            if (InputManager.Instance.isPressed(Keys.J))
             {
                 constructionManager.BuildMode = ConstructionManager.BuildingMode.Sell;
             }
 
-            if (InputManager.Instance.isDown(Keys.J))
-            {
-                constructionManager.BuildMode = ConstructionManager.BuildingMode.TransportBelt;
-            }
-
-            if (InputManager.Instance.isDown(Keys.K))
+            if (InputManager.Instance.isPressed(Keys.K))
             {
                 constructionManager.BuildMode = ConstructionManager.BuildingMode.SortingMachine;
             }
@@ -195,6 +178,16 @@ namespace LD37.GameLevels
                         }
 
                     }
+                }
+
+                if (importManager.ImportTile.CheckCollision(ResourceList[i]))
+                {
+                    importManager.ImportTile.HandleCollision(ResourceList[i]);
+                }
+
+                if (exportManager.ExportTile.CheckCollision(ResourceList[i]))
+                {
+                    exportManager.ExportTile.HandleCollision(ResourceList[i]);
                 }
 
                 if (!ResourceList[i].Active)

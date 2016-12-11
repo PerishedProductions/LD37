@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework.Content;
-using LD37.Entities.Machines;
+﻿using LD37.Managers;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace LD37.Entities
 {
     public class ImportTile : Tile
     {
 
+
         float BeltSpeed = 0.1f;
+
+        public ImportTile()
+        {
+            ImportManager.Instance.ImportTile = this;
+        }
 
         public override void LoadContent(ContentManager content)
         {

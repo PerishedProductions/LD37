@@ -6,7 +6,7 @@ namespace LD37.Entities.Machines
 {
     public class MachineFactory
     {
-        public static MachineFactory Instace { get; set; } = new MachineFactory();
+        public static MachineFactory Instance { get; set; } = new MachineFactory();
         public MainLevel LevelInstance { get; set; }
 
 
