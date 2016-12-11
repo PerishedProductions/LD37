@@ -48,6 +48,7 @@
     <Compile Include="Entities\Resources\Leather.cs" />
     <Compile Include="Entities\Resources\Plastic.cs" />
     <Compile Include="Entities\Resources\Resource.cs" />
+    <Compile Include="Entities\Resources\ResourceFactory.cs" />
     <Compile Include="Entities\Resources\Toys\SoccerBall.cs" />
     <Compile Include="Entities\Resources\Toys\Toy.cs" />
     <Compile Include="Entities\Resources\Toys\ToyFactory.cs" />
