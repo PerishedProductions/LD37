@@ -49,7 +49,6 @@ namespace LD37.UI
         UIButton plasticButton;
 
         UIText impTitle;
-        UIText resTitle;
 
         int windowWidth = 1280;
         int windowHeight = 720;
@@ -72,9 +71,6 @@ namespace LD37.UI
 
         int sellW = 210;
         int sellH = 50;
-
-        int resWindowW = 1000;
-        int resWindowH = 600;
 
         int machinePanelW = 905;
         int machinePanelH = 45;

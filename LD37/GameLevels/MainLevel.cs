@@ -22,20 +22,8 @@ namespace LD37.GameLevels
         Camera cam;
         Map map;
         ReadJson jsonLoader;
-
-<<<<<<< .mine
         Texture2D background;
 
-        private ConstructionManager constructionManager = ConstructionManager.Instance;
-        private ImportManager importManager = ImportManager.Instance;
-        private ExportManager exportManager = ExportManager.Instance;
-=======
-
-
-
-
-
->>>>>>> .theirs
         public ContentManager Content { get; set; }
         public List<Resource> ResourceList { get; set; } = new List<Resource>();
         public List<Machine> MachineList { get; set; } = new List<Machine>();

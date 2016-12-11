@@ -14,7 +14,6 @@ namespace LD37.GameLevels
     {
 
         UICanvas canvas;
-        UIText mouseText;
 
         Texture2D title;
 
@@ -39,7 +38,6 @@ namespace LD37.GameLevels
         public override void LoadContent(ContentManager content)
         {
             canvas.LoadContent(content);
-            mouseText = (UIText)canvas.CreateUIElement(new UIText(Vector2.Zero, "Mouse Pos"));
             title = content.Load<Texture2D>("Title");
             bgMsucic = content.Load<Song>("Song");
             MediaPlayer.Volume = .05f;
@@ -49,8 +47,6 @@ namespace LD37.GameLevels
 
         public override void Update(GameTime gameTime)
         {
-            mouseText.position = InputManager.Instance.getMousePos();
-            mouseText.text = "Mouse Pos: " + InputManager.Instance.getMousePos();
             canvas.Update(gameTime);
 
             base.Update(gameTime);
