@@ -1,5 +1,6 @@
 ﻿using LD37.GameLevels;
 using Microsoft.Xna.Framework;
+using static LD37.Managers.ConstructionManager;
 
 namespace LD37.Entities.Machines
 {
@@ -44,5 +45,20 @@ namespace LD37.Entities.Machines
             return machine;
         }
 
+        public Machine CreateTransportBelt(Vector2 position, BuildingDirection direction)
+        {
+            TransportBelt transportBelt = new TransportBelt();
+
+            transportBelt.spriteName = "Window";
+            transportBelt.BeltDirection = direction;
+            transportBelt.position = position;
+            transportBelt.SpriteColor = Color.White;
+            transportBelt.LoadContent(LevelInstance.Content);
+
+            LevelInstance.MachineList.Add(transportBelt);
+
+
+            return transportBelt;
+        }
     }
 }
