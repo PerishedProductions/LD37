@@ -23,9 +23,6 @@ namespace LD37.GameLevels
         Map map;
         ReadJson jsonLoader;
 
-        private ConstructionManager constructionManager = ConstructionManager.Instance;
-        private ImportManager importManager = ImportManager.Instance;
-        private ExportManager exportManager = ExportManager.Instance;
         public ContentManager Content { get; set; }
         public List<Resource> ResourceList { get; set; } = new List<Resource>();
         public List<Machine> MachineList { get; set; } = new List<Machine>();
@@ -57,41 +54,42 @@ namespace LD37.GameLevels
             Content = content;
 
             MainGameCanvas tempCanvas = (MainGameCanvas)canvas;
-            tempCanvas.constructionManager = constructionManager;
+            tempCanvas.constructionManager = ConstructionManager.Instance;
             canvas.LoadContent(content);
 
             map.LoadContent(content);
 
-            constructionManager.Tiles = map.tiles;
+            ConstructionManager.Instance.Tiles = map.tiles;
             base.LoadContent(content);
         }
 
         public override void Update(GameTime gameTime)
         {
-            constructionManager.Update(cam.GetViewMatrix());
-            importManager.Update(gameTime);
-            exportManager.Update(gameTime);
+            ConstructionManager.Instance.Update(cam.GetViewMatrix());
+            ImportManager.Instance.Update(gameTime);
+            ExportManager.Instance.Update(gameTime);
+            GameManager.Instance.Update(gameTime);
 
             if (InputManager.Instance.isPressed(Keys.R))
             {
-                switch (constructionManager.BuildDirection)
+                switch (ConstructionManager.Instance.BuildDirection)
                 {
                     case ConstructionManager.BuildingDirection.UP:
-                        constructionManager.BuildDirection = ConstructionManager.BuildingDirection.RIGHT;
+                        ConstructionManager.Instance.BuildDirection = ConstructionManager.BuildingDirection.RIGHT;
                         break;
                     case ConstructionManager.BuildingDirection.LEFT:
-                        constructionManager.BuildDirection = ConstructionManager.BuildingDirection.UP;
+                        ConstructionManager.Instance.BuildDirection = ConstructionManager.BuildingDirection.UP;
                         break;
                     case ConstructionManager.BuildingDirection.RIGHT:
-                        constructionManager.BuildDirection = ConstructionManager.BuildingDirection.DOWN;
+                        ConstructionManager.Instance.BuildDirection = ConstructionManager.BuildingDirection.DOWN;
                         break;
                     case ConstructionManager.BuildingDirection.DOWN:
-                        constructionManager.BuildDirection = ConstructionManager.BuildingDirection.LEFT;
+                        ConstructionManager.Instance.BuildDirection = ConstructionManager.BuildingDirection.LEFT;
                         break;
                     default:
                         break;
                 }
-                Debug.WriteLine("Build Direction: " + constructionManager.BuildDirection);
+                Debug.WriteLine("Build Direction: " + ConstructionManager.Instance.BuildDirection);
             }
 
             if (InputManager.Instance.isDown(Keys.W))
@@ -152,14 +150,14 @@ namespace LD37.GameLevels
                     }
                 }
 
-                if (importManager.ImportTile.CheckCollision(ResourceList[i]))
+                if (ImportManager.Instance.ImportTile.CheckCollision(ResourceList[i]))
                 {
-                    importManager.ImportTile.HandleCollision(ResourceList[i]);
+                    ImportManager.Instance.ImportTile.HandleCollision(ResourceList[i]);
                 }
 
-                if (exportManager.ExportTile.CheckCollision(ResourceList[i]))
+                if (ExportManager.Instance.ExportTile.CheckCollision(ResourceList[i]))
                 {
-                    exportManager.ExportTile.HandleCollision(ResourceList[i]);
+                    ExportManager.Instance.ExportTile.HandleCollision(ResourceList[i]);
                 }
 
                 if (!ResourceList[i].Active)
