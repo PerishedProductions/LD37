@@ -29,9 +29,10 @@ namespace LD37.Managers
 
         private void FinishGame()
         {
-            Debug.WriteLine($"GAME OVER: Final score: {StatManager.Instance.GetMoney}");
+            int score = StatManager.Instance.GetMoney;
+            Debug.WriteLine($"GAME OVER: Final score: {score}");
             StatManager.Instance.Reset();
-            LevelManager.Instance.ChangeLevel(new MenuLevel());
+            LevelManager.Instance.ChangeLevel(new ScoreBoardLevel(score));
         }
     }
 }
