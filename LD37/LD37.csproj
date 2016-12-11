@@ -69,6 +69,7 @@
     <Compile Include="Managers\ImportManager.cs" />
     <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\LevelManager.cs" />
+    <Compile Include="Managers\StatManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\CustomCanvas\MainGameCanvas.cs" />
