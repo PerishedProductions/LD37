@@ -7,7 +7,7 @@ namespace LD37.Managers
     public class GameManager
     {
         public static GameManager Instance { get; set; } = new GameManager();
-        private const int TotalGameLength = 5 * 60 * 1000;
+        private const int TotalGameLength = 1 * 60 * 1000;
 
         public int GameLength { get; set; } = TotalGameLength;
 
@@ -29,9 +29,10 @@ namespace LD37.Managers
 
         private void FinishGame()
         {
-            Debug.WriteLine($"GAME OVER: Final score: {StatManager.Instance.GetMoney}");
+            int score = StatManager.Instance.GetMoney;
+            Debug.WriteLine($"GAME OVER: Final score: {score}");
             StatManager.Instance.Reset();
-            LevelManager.Instance.ChangeLevel(new MenuLevel());
+            LevelManager.Instance.ChangeLevel(new ScoreBoardLevel(score));
         }
     }
 }
