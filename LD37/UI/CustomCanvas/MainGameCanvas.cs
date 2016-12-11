@@ -1,12 +1,9 @@
-﻿using LD37.GameLevels;
+﻿using LD37.Entities.Resources;
 using LD37.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using System;
-using System.Diagnostics;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using LD37.Entities.Resources;
+using System.Diagnostics;
 
 namespace LD37.UI
 {
@@ -165,35 +162,51 @@ namespace LD37.UI
                 machines[i].Update(gameTime);
             }
 
-            if (machines[0].mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
-            {
-                constructionManager.BuildMode = ConstructionManager.BuildingMode.AirPump;
-                mainPanel.visible = false;
-                return;
-            }
-
-            if (machines[1].mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
-            {
-                constructionManager.BuildMode = ConstructionManager.BuildingMode.Assembler;
-                mainPanel.visible = false;
-                return;
-            }
-
-            if (machines[2].mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
-            {
-                constructionManager.BuildMode = ConstructionManager.BuildingMode.TransportBelt;
-                mainPanel.visible = false;
-                return;
-            }
 
             if (isBuilding)
             {
                 if (exitBuildMode.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
                 {
                     Debug.WriteLine("Exit Build Mode Pressed");
+                    constructionManager.BuildMode = ConstructionManager.BuildingMode.None;
                     mainPanel.visible = true;
                     buildPanel.visible = false;
                     isBuilding = false;
+                    return;
+                }
+
+                if (machines[0].mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    constructionManager.BuildMode = ConstructionManager.BuildingMode.AirPump;
+                    mainPanel.visible = false;
+                    return;
+                }
+
+                if (machines[1].mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    constructionManager.BuildMode = ConstructionManager.BuildingMode.Assembler;
+                    mainPanel.visible = false;
+                    return;
+                }
+
+                if (machines[2].mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    constructionManager.BuildMode = ConstructionManager.BuildingMode.TransportBelt;
+                    mainPanel.visible = false;
+                    return;
+                }
+
+                if (machines[3].mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    constructionManager.BuildMode = ConstructionManager.BuildingMode.SortingMachine;
+                    mainPanel.visible = false;
+                    return;
+                }
+
+                if (sellMachine.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    constructionManager.BuildMode = ConstructionManager.BuildingMode.Sell;
+                    mainPanel.visible = false;
                     return;
                 }
             }

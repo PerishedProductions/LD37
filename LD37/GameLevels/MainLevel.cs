@@ -72,16 +72,6 @@ namespace LD37.GameLevels
             importManager.Update(gameTime);
             exportManager.Update(gameTime);
 
-            if (InputManager.Instance.isPressed(Keys.J))
-            {
-                constructionManager.BuildMode = ConstructionManager.BuildingMode.Sell;
-            }
-
-            if (InputManager.Instance.isPressed(Keys.K))
-            {
-                constructionManager.BuildMode = ConstructionManager.BuildingMode.SortingMachine;
-            }
-
             if (InputManager.Instance.isPressed(Keys.R))
             {
                 switch (constructionManager.BuildDirection)
