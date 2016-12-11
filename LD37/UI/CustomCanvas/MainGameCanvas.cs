@@ -14,18 +14,24 @@ namespace LD37.UI
 
         public ConstructionManager constructionManager;
 
+        public bool isBuilding = false;
+
         UIText money;
         UIText buildMode;
         UIText buildRotation;
 
         UIButton openMenu;
         UIPanel mainPanel;
+        UIPanel buildPanel;
         UIPanel machinePanel;
 
         List<UIButton> machines = new List<UIButton>();
 
         UIButton imp;
-        UIButton res;
+        UIButton enterBuildMode;
+
+        UIButton exitBuildMode;
+        UIButton sellMachine;
 
         UIPanel impWin;
         UIPanel resWin;
@@ -43,16 +49,22 @@ namespace LD37.UI
         int impW = 200;
         int impH = 50;
 
-        int resW = 155;
+        int resW = 180;
         int resH = 50;
 
         int impWindowW = 1000;
         int impWindowH = 600;
 
+        int exitBuildW = 260;
+        int exitBuildH = 50;
+
+        int sellW = 210;
+        int sellH = 50;
+
         int resWindowW = 1000;
         int resWindowH = 600;
 
-        int machinePanelW = 650;
+        int machinePanelW = 905;
         int machinePanelH = 45;
 
         int machine0W = 150;
@@ -80,7 +92,7 @@ namespace LD37.UI
             mainPanel.visible = false;
 
             imp = (UIButton)mainPanel.CreateUIElement(new UIButton("Import Elf", new Rectangle(0 + padding, windowHeight - impH, impW, impH), new Vector2(10, 5), WindowTheme.Light));
-            //res = (UIButton)mainPanel.CreateUIElement(new UIButton("Research", new Rectangle(impW + padding * 2, windowHeight - resH, resW, resH), new Vector2(10, 5), WindowTheme.Light));
+            enterBuildMode = (UIButton)mainPanel.CreateUIElement(new UIButton("Build Mode", new Rectangle(impW + padding * 2, windowHeight - resH, resW, resH), new Vector2(10, 5), WindowTheme.Light));
 
             impWin = (UIPanel)CreateUIElement(new UIPanel(new Rectangle(windowWidth / 2 - impWindowW / 2, windowHeight / 2 - impWindowH / 2, impWindowW, impWindowH)));
             impWin.visible = false;
@@ -90,22 +102,30 @@ namespace LD37.UI
             resWin.visible = false;
             resTitle = (UIText)resWin.CreateUIElement(new UIText(new Vector2(impWin.size.X + impWindowW / 2 - 350 / 2, impWin.size.Y + padding), "Research Elf Department"));
 
-            machinePanel = (UIPanel)mainPanel.CreateUIElement(new UIPanel(new Rectangle(windowWidth - machinePanelW - menuBtnW - padding, windowHeight - machinePanelH, machinePanelW, machinePanelH), WindowTheme.Light));
+            buildPanel = (UIPanel)CreateUIElement(new UIPanel(new Rectangle(0, windowHeight - menuBtnH, windowWidth - menuBtnW, menuBtnH)));
+            buildPanel.visible = false;
 
-            machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Air Pump", new Rectangle(windowWidth - menuBtnW - machine0W - padding * 2, windowHeight - machine0H, machine0W, machine0H), new Vector2(10, 0), WindowTheme.Dark)));
-            machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Assembler", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - padding * 2, windowHeight - machine1H, machine1W, machine1H), new Vector2(10, 0), WindowTheme.Dark)));
-            machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Transporter Belt", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - machine2W - padding * 3, windowHeight - machine2H, machine2W, machine2H), new Vector2(10, 0), WindowTheme.Dark)));
-            machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Sorting Machine", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - machine2W - machine3W - padding * 3, windowHeight - machine3H, machine3W, machine3H), new Vector2(10, 0), WindowTheme.Dark)));
+            exitBuildMode = (UIButton)buildPanel.CreateUIElement(new UIButton("Exit Build Mode", new Rectangle(0 + padding, windowHeight - exitBuildH, exitBuildW, exitBuildH), new Vector2(10, 5), WindowTheme.Light));
+            sellMachine = (UIButton)buildPanel.CreateUIElement(new UIButton("Sell Machine", new Rectangle(exitBuildW + padding * 2, windowHeight - sellH, sellW, sellH), new Vector2(10, 5), WindowTheme.Light));
+
+            machinePanel = (UIPanel)buildPanel.CreateUIElement(new UIPanel(new Rectangle(windowWidth - machinePanelW - menuBtnW - padding, windowHeight - machinePanelH - 50, machinePanelW, machinePanelH), WindowTheme.Light));
+
+            machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Air Pump", new Rectangle(windowWidth - menuBtnW - machine0W - padding * 2, windowHeight - machine0H - 50, machine0W, machine0H), new Vector2(10, 0), WindowTheme.Dark)));
+            machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Assembler", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - padding * 3, windowHeight - machine1H - 50, machine1W, machine1H), new Vector2(10, 0), WindowTheme.Dark)));
+            machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Transporter Belt", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - machine2W - padding * 4, windowHeight - machine2H - 50, machine2W, machine2H), new Vector2(10, 0), WindowTheme.Dark)));
+            machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Sorting Machine", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - machine2W - machine3W - padding * 5, windowHeight - machine3H - 50, machine3W, machine3H), new Vector2(10, 0), WindowTheme.Dark)));
         }
 
         public override void Update(GameTime gameTime)
         {
             money.text = "Money:  $" + StatManager.Instance.GetMoney;
-            buildMode.text = "Build Mode: " + constructionManager.BuildMode;
+            buildMode.text = "Build Tool: " + constructionManager.BuildMode;
             buildRotation.text = "Build Direction: " + constructionManager.BuildDirection;
 
             imp.Update(gameTime);
-            //res.Update(gameTime);
+            enterBuildMode.Update(gameTime);
+            exitBuildMode.Update(gameTime);
+            sellMachine.Update(gameTime);
 
             for (int i = 0; i < machines.Count; i++)
             {
@@ -137,24 +157,39 @@ namespace LD37.UI
                 resWin.visible = false;
             }
 
-            /*if (res.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+            if (enterBuildMode.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
                 Debug.WriteLine("ButtonPressed");
-                impWin.visible = false;
-                resWin.visible = true;
-            }*/
+                mainPanel.visible = false;
+                buildPanel.visible = true;
+                isBuilding = true;
+            }
+
+            if (exitBuildMode.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+            {
+                if (isBuilding)
+                {
+                    Debug.WriteLine("ButtonPressed");
+                    mainPanel.visible = true;
+                    buildPanel.visible = false;
+                    isBuilding = false;
+                }
+            }
 
             if (openMenu.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
                 Debug.WriteLine("ButtonPressed");
-                mainPanel.visible = !mainPanel.visible;
-
-                if (mainPanel.visible)
+                if (!isBuilding)
                 {
-                    impWin.visible = false;
-                    resWin.visible = false;
+                    mainPanel.visible = !mainPanel.visible;
 
-                    constructionManager.BuildMode = ConstructionManager.BuildingMode.None;
+                    if (mainPanel.visible)
+                    {
+                        impWin.visible = false;
+                        resWin.visible = false;
+
+                        constructionManager.BuildMode = ConstructionManager.BuildingMode.None;
+                    }
                 }
             }
 
