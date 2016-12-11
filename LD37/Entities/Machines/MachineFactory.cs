@@ -60,5 +60,19 @@ namespace LD37.Entities.Machines
 
             return transportBelt;
         }
+
+        public Machine CreateSortingMachine(Vector2 position)
+        {
+            SortingMachine sortingMachine = new SortingMachine();
+
+            sortingMachine.spriteName = "Window";
+            sortingMachine.position = position;
+            sortingMachine.SpriteColor = Color.Red;
+            sortingMachine.LoadContent(LevelInstance.Content);
+
+            LevelInstance.MachineList.Add(sortingMachine);
+
+            return sortingMachine;
+        }
     }
 }

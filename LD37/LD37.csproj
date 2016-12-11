@@ -43,6 +43,7 @@
     <Compile Include="Entities\Machines\Assembler.cs" />
     <Compile Include="Entities\Machines\Machine.cs" />
     <Compile Include="Entities\Machines\MachineFactory.cs" />
+    <Compile Include="Entities\Machines\SortingMachine.cs" />
     <Compile Include="Entities\Machines\TransportBelt.cs" />
     <Compile Include="Entities\Maps\Map.cs" />
     <Compile Include="Entities\Resources\Battery.cs" />

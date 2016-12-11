@@ -116,6 +116,11 @@ namespace LD37.GameLevels
                 constructionManager.BuildMode = ConstructionManager.BuildingMode.TransportBelt;
             }
 
+            if (InputManager.Instance.isDown(Keys.K))
+            {
+                constructionManager.BuildMode = ConstructionManager.BuildingMode.SortingMachine;
+            }
+
             if (InputManager.Instance.isDown(Keys.R))
             {
                 switch (constructionManager.BuildDirection)
