@@ -46,7 +46,6 @@ namespace LD37.Managers
         public void Import()
         {
             ImportOptions resource = ImportResourcesQueue.Dequeue();
-
             switch (resource)
             {
                 case ImportOptions.Leather:

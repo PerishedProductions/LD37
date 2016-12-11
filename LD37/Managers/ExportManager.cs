@@ -1,6 +1,7 @@
 ﻿using LD37.Entities;
 using LD37.Entities.Resources;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -36,6 +37,7 @@ namespace LD37.Managers
             while (ExportQueue.Count > 0)
             {
                 Resource resource = ExportQueue.Dequeue();
+                StatManager.Instance.AddMoney((int)Math.Floor(resource.Price * 0.8f));
                 Debug.WriteLine($"Resource {resource.GetType()} exported");
                 resource.Active = false;
 
