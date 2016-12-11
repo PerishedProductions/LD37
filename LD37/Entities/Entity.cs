@@ -16,7 +16,6 @@ namespace LD37.Entities
         public bool Active { get; set; } = true;
         public float RotationInDegrees { get; set; }
         public Color SpriteColor { get; set; } = Color.White;
-        protected Vector2 _origin;
 
         public virtual Rectangle BoundingBox
         {
@@ -25,8 +24,8 @@ namespace LD37.Entities
                 return new Rectangle(
                     (int)position.X,
                     (int)position.Y,
-                    sprite.Width,
-                    sprite.Height);
+                    64,
+                    64);
             }
         }
 
@@ -43,7 +42,6 @@ namespace LD37.Entities
         public virtual void LoadContent(ContentManager content)
         {
             sprite = content.Load<Texture2D>(spriteName);
-            _origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
 
         }
 

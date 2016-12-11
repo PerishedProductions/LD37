@@ -72,50 +72,6 @@ namespace LD37.GameLevels
             importManager.Update(gameTime);
             exportManager.Update(gameTime);
 
-            if (InputManager.Instance.isPressed(Keys.F))
-            {
-                if (Leather.LeatherPrice <= StatManager.Instance.GetMoney)
-                {
-                    importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Leather);
-                    StatManager.Instance.RemoveMoney(Leather.LeatherPrice);
-                    Debug.WriteLine("Add Leather to Importer");
-                }
-                else
-                {
-                    Debug.WriteLine("Not enough money to import Leather");
-                }
-
-
-            }
-
-            if (InputManager.Instance.isPressed(Keys.G))
-            {
-                if (Plastic.PlasticPrice <= StatManager.Instance.GetMoney)
-                {
-                    importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Plastic);
-                    StatManager.Instance.RemoveMoney(Plastic.PlasticPrice);
-                    Debug.WriteLine("Add Plastic to Importer");
-                }
-                else
-                {
-                    Debug.WriteLine("Not enough money to import Plastic");
-                }
-            }
-
-            if (InputManager.Instance.isPressed(Keys.H))
-            {
-                if (Battery.BatteryPrice <= StatManager.Instance.GetMoney)
-                {
-                    importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Battery);
-                    StatManager.Instance.RemoveMoney(Battery.BatteryPrice);
-                    Debug.WriteLine("Add Battery to Importer");
-                }
-                else
-                {
-                    Debug.WriteLine("Not enough money to import Battery");
-                }
-            }
-
             if (InputManager.Instance.isPressed(Keys.J))
             {
                 constructionManager.BuildMode = ConstructionManager.BuildingMode.Sell;
