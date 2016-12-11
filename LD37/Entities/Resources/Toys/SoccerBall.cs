@@ -7,6 +7,22 @@ namespace LD37.Entities.Resources.Toys
 {
     public class SoccerBall : Toy
     {
+        private static int _price = 250;
+
+        public override int Price
+        {
+            get
+            {
+                return _price;
+            }
+
+            set
+            {
+                _price = value;
+            }
+        }
+
+
         Animation anim;
 
         public override void LoadContent(ContentManager content)

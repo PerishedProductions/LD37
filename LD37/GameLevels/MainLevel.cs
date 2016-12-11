@@ -74,20 +74,46 @@ namespace LD37.GameLevels
 
             if (InputManager.Instance.isPressed(Keys.F))
             {
-                importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Leather);
-                Debug.WriteLine("Add Leather to Importer");
+                if (Leather.LeatherPrice <= StatManager.Instance.GetMoney)
+                {
+                    importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Leather);
+                    StatManager.Instance.RemoveMoney(Leather.LeatherPrice);
+                    Debug.WriteLine("Add Leather to Importer");
+                }
+                else
+                {
+                    Debug.WriteLine("Not enough money to import Leather");
+                }
+
+
             }
 
             if (InputManager.Instance.isPressed(Keys.G))
             {
-                importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Plastic);
-                Debug.WriteLine("Add Plastic to Importer");
+                if (Plastic.PlasticPrice <= StatManager.Instance.GetMoney)
+                {
+                    importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Plastic);
+                    StatManager.Instance.RemoveMoney(Plastic.PlasticPrice);
+                    Debug.WriteLine("Add Plastic to Importer");
+                }
+                else
+                {
+                    Debug.WriteLine("Not enough money to import Plastic");
+                }
             }
 
             if (InputManager.Instance.isPressed(Keys.H))
             {
-                importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Battery);
-                Debug.WriteLine("Add Battery to Importer");
+                if (Battery.BatteryPrice <= StatManager.Instance.GetMoney)
+                {
+                    importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Battery);
+                    StatManager.Instance.RemoveMoney(Battery.BatteryPrice);
+                    Debug.WriteLine("Add Battery to Importer");
+                }
+                else
+                {
+                    Debug.WriteLine("Not enough money to import Battery");
+                }
             }
 
             if (InputManager.Instance.isPressed(Keys.J))

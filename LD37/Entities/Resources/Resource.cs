@@ -5,6 +5,8 @@ namespace LD37.Entities.Resources
 {
     public class Resource : Entity
     {
+        public virtual int Price { get; }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
