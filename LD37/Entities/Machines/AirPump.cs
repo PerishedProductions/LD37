@@ -54,9 +54,15 @@ namespace LD37.Entities.Machines
             }
             else
             {
-                base.HandleCollision(otherEntity);
+                FabricateScrap();
+                otherEntity.Active = false;
             }
 
+        }
+
+        private void FabricateScrap()
+        {
+            ResourceFactory.Instance.CreateScrap(this.position + new Vector2(this.sprite.Width, 0));
         }
     }
 }

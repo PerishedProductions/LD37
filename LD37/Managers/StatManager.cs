@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LD37.Managers
+﻿namespace LD37.Managers
 {
     public class StatManager
     {
+        private const int StartingMoney = 1000;
 
         private static StatManager instance;
 
@@ -25,7 +20,7 @@ namespace LD37.Managers
             }
         }
 
-        int money = 1000;
+        int money = StartingMoney;
 
         public int GetMoney
         {
@@ -49,5 +44,9 @@ namespace LD37.Managers
             money -= amount;
         }
 
+        public void Reset()
+        {
+            money = StartingMoney;
+        }
     }
 }

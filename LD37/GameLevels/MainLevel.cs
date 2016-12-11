@@ -23,11 +23,19 @@ namespace LD37.GameLevels
         Map map;
         ReadJson jsonLoader;
 
+<<<<<<< .mine
         Texture2D background;
 
         private ConstructionManager constructionManager = ConstructionManager.Instance;
         private ImportManager importManager = ImportManager.Instance;
         private ExportManager exportManager = ExportManager.Instance;
+=======
+
+
+
+
+
+>>>>>>> .theirs
         public ContentManager Content { get; set; }
         public List<Resource> ResourceList { get; set; } = new List<Resource>();
         public List<Machine> MachineList { get; set; } = new List<Machine>();
@@ -61,95 +69,42 @@ namespace LD37.GameLevels
             background = content.Load<Texture2D>("BG");
 
             MainGameCanvas tempCanvas = (MainGameCanvas)canvas;
-            tempCanvas.constructionManager = constructionManager;
+            tempCanvas.constructionManager = ConstructionManager.Instance;
             canvas.LoadContent(content);
 
             map.LoadContent(content);
 
-            constructionManager.Tiles = map.tiles;
+            ConstructionManager.Instance.Tiles = map.tiles;
             base.LoadContent(content);
         }
 
         public override void Update(GameTime gameTime)
         {
-            constructionManager.Update(cam.GetViewMatrix());
-            importManager.Update(gameTime);
-            exportManager.Update(gameTime);
-
-            if (InputManager.Instance.isPressed(Keys.F))
-            {
-                if (Leather.LeatherPrice <= StatManager.Instance.GetMoney)
-                {
-                    importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Leather);
-                    StatManager.Instance.RemoveMoney(Leather.LeatherPrice);
-                    Debug.WriteLine("Add Leather to Importer");
-                }
-                else
-                {
-                    Debug.WriteLine("Not enough money to import Leather");
-                }
-
-
-            }
-
-            if (InputManager.Instance.isPressed(Keys.G))
-            {
-                if (Plastic.PlasticPrice <= StatManager.Instance.GetMoney)
-                {
-                    importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Plastic);
-                    StatManager.Instance.RemoveMoney(Plastic.PlasticPrice);
-                    Debug.WriteLine("Add Plastic to Importer");
-                }
-                else
-                {
-                    Debug.WriteLine("Not enough money to import Plastic");
-                }
-            }
-
-            if (InputManager.Instance.isPressed(Keys.H))
-            {
-                if (Battery.BatteryPrice <= StatManager.Instance.GetMoney)
-                {
-                    importManager.ImportResourcesQueue.Enqueue(ImportManager.ImportOptions.Battery);
-                    StatManager.Instance.RemoveMoney(Battery.BatteryPrice);
-                    Debug.WriteLine("Add Battery to Importer");
-                }
-                else
-                {
-                    Debug.WriteLine("Not enough money to import Battery");
-                }
-            }
-
-            if (InputManager.Instance.isPressed(Keys.J))
-            {
-                constructionManager.BuildMode = ConstructionManager.BuildingMode.Sell;
-            }
-
-            if (InputManager.Instance.isPressed(Keys.K))
-            {
-                constructionManager.BuildMode = ConstructionManager.BuildingMode.SortingMachine;
-            }
+            ConstructionManager.Instance.Update(cam.GetViewMatrix());
+            ImportManager.Instance.Update(gameTime);
+            ExportManager.Instance.Update(gameTime);
+            GameManager.Instance.Update(gameTime);
 
             if (InputManager.Instance.isPressed(Keys.R))
             {
-                switch (constructionManager.BuildDirection)
+                switch (ConstructionManager.Instance.BuildDirection)
                 {
                     case ConstructionManager.BuildingDirection.UP:
-                        constructionManager.BuildDirection = ConstructionManager.BuildingDirection.RIGHT;
+                        ConstructionManager.Instance.BuildDirection = ConstructionManager.BuildingDirection.RIGHT;
                         break;
                     case ConstructionManager.BuildingDirection.LEFT:
-                        constructionManager.BuildDirection = ConstructionManager.BuildingDirection.UP;
+                        ConstructionManager.Instance.BuildDirection = ConstructionManager.BuildingDirection.UP;
                         break;
                     case ConstructionManager.BuildingDirection.RIGHT:
-                        constructionManager.BuildDirection = ConstructionManager.BuildingDirection.DOWN;
+                        ConstructionManager.Instance.BuildDirection = ConstructionManager.BuildingDirection.DOWN;
                         break;
                     case ConstructionManager.BuildingDirection.DOWN:
-                        constructionManager.BuildDirection = ConstructionManager.BuildingDirection.LEFT;
+                        ConstructionManager.Instance.BuildDirection = ConstructionManager.BuildingDirection.LEFT;
                         break;
                     default:
                         break;
                 }
-                Debug.WriteLine("Build Direction: " + constructionManager.BuildDirection);
+                Debug.WriteLine("Build Direction: " + ConstructionManager.Instance.BuildDirection);
             }
 
             if (InputManager.Instance.isDown(Keys.W))
@@ -210,14 +165,14 @@ namespace LD37.GameLevels
                     }
                 }
 
-                if (importManager.ImportTile.CheckCollision(ResourceList[i]))
+                if (ImportManager.Instance.ImportTile.CheckCollision(ResourceList[i]))
                 {
-                    importManager.ImportTile.HandleCollision(ResourceList[i]);
+                    ImportManager.Instance.ImportTile.HandleCollision(ResourceList[i]);
                 }
 
-                if (exportManager.ExportTile.CheckCollision(ResourceList[i]))
+                if (ExportManager.Instance.ExportTile.CheckCollision(ResourceList[i]))
                 {
-                    exportManager.ExportTile.HandleCollision(ResourceList[i]);
+                    ExportManager.Instance.ExportTile.HandleCollision(ResourceList[i]);
                 }
 
                 if (!ResourceList[i].Active)
