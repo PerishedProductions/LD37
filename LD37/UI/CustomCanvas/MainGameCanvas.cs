@@ -14,6 +14,10 @@ namespace LD37.UI
 
         public ConstructionManager constructionManager;
 
+        UIText money;
+        UIText buildMode;
+        UIText buildRotation;
+
         UIButton openMenu;
         UIPanel mainPanel;
         UIPanel machinePanel;
@@ -63,6 +67,11 @@ namespace LD37.UI
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
+
+            money = (UIText)CreateUIElement(new UIText(new Vector2(padding, 0), "Money: $1 000 000"));
+            buildMode = (UIText)CreateUIElement(new UIText(new Vector2(padding, 30), "Build Mode: "));
+            buildRotation = (UIText)CreateUIElement(new UIText(new Vector2(padding, 60), "Build Rotation: "));
+
             openMenu = (UIButton)CreateUIElement(new UIButton("Menu", new Rectangle(windowWidth - menuBtnW, windowHeight - menuBtnH, menuBtnW, menuBtnH), new Vector2(10, 5)));
             mainPanel = (UIPanel)CreateUIElement(new UIPanel(new Rectangle(0, windowHeight - menuBtnH, windowWidth - menuBtnW, menuBtnH)));
             mainPanel.visible = false;
@@ -87,6 +96,10 @@ namespace LD37.UI
 
         public override void Update(GameTime gameTime)
         {
+            money.text = "Money:  $" + StatManager.Instance.GetMoney;
+            buildMode.text = "Build Mode: " + constructionManager.BuildMode;
+            buildRotation.text = "Build Direction: " + constructionManager.BuildDirection;
+
             imp.Update(gameTime);
             res.Update(gameTime);
 
