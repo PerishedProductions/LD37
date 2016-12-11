@@ -60,7 +60,6 @@ namespace CoreGame.Graphics
 
                 elapsedTime = 0;
             }
-
             soureceRect = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeight);
             destinationRect = new Rectangle((int)position.X, (int)position.Y, frameWidth, frameHeight);
         }

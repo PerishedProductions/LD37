@@ -23,6 +23,8 @@ namespace LD37.GameLevels
         Map map;
         ReadJson jsonLoader;
 
+        Texture2D background;
+
         private ConstructionManager constructionManager = ConstructionManager.Instance;
         private ImportManager importManager = ImportManager.Instance;
         private ExportManager exportManager = ExportManager.Instance;
@@ -55,6 +57,8 @@ namespace LD37.GameLevels
             ResourceFactory.Instance.LevelInstance = this;
 
             Content = content;
+
+            background = content.Load<Texture2D>("BG");
 
             MainGameCanvas tempCanvas = (MainGameCanvas)canvas;
             tempCanvas.constructionManager = constructionManager;
@@ -230,6 +234,8 @@ namespace LD37.GameLevels
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetViewMatrix());
+
+            spriteBatch.Draw(background, new Vector2(-100, -100));
             map.Draw(spriteBatch);
 
             foreach (var item in MachineList)

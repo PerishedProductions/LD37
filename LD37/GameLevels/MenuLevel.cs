@@ -41,7 +41,7 @@ namespace LD37.GameLevels
             canvas.LoadContent(content);
             mouseText = (UIText)canvas.CreateUIElement(new UIText(Vector2.Zero, "Mouse Pos"));
             title = content.Load<Texture2D>("Title");
-            bgMsucic = content.Load<Song>("TestyTest");
+            bgMsucic = content.Load<Song>("Song");
             MediaPlayer.Volume = .05f;
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(bgMsucic);
