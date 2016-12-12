@@ -48,7 +48,6 @@ namespace LD37.GameLevels
         public override void Update(GameTime gameTime)
         {
             canvas.Update(gameTime);
-
             base.Update(gameTime);
         }
 

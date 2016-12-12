@@ -16,7 +16,6 @@ namespace LD37.GameLevels
 {
     public class MainLevel : GameLevel
     {
-
         UICanvas canvas;
 
         Camera cam;
@@ -43,6 +42,7 @@ namespace LD37.GameLevels
         public override void InitializeCam(Viewport viewport)
         {
             cam = new Camera(viewport);
+            cam.zoom = 2.5f;
             base.InitializeCam(viewport);
         }
 
@@ -68,7 +68,11 @@ namespace LD37.GameLevels
 
         public override void Update(GameTime gameTime)
         {
-            ConstructionManager.Instance.Update(cam.GetViewMatrix());
+            MainGameCanvas temp = (MainGameCanvas)canvas;
+            if (!temp.isOverUI)
+            {
+                ConstructionManager.Instance.Update(cam.GetViewMatrix(), (MainGameCanvas)canvas);
+            }
             ImportManager.Instance.Update(gameTime);
             ExportManager.Instance.Update(gameTime);
             GameManager.Instance.Update(gameTime);
@@ -97,32 +101,40 @@ namespace LD37.GameLevels
 
             if (InputManager.Instance.isDown(Keys.W))
             {
-                cam.position += new Vector2(0, -3);
+                cam.position += new Vector2(0, -5);
             }
 
             if (InputManager.Instance.isDown(Keys.S))
             {
-                cam.position += new Vector2(0, 3);
+                cam.position += new Vector2(0, 5);
             }
 
             if (InputManager.Instance.isDown(Keys.D))
             {
-                cam.position += new Vector2(3, 0);
+                cam.position += new Vector2(5, 0);
             }
 
             if (InputManager.Instance.isDown(Keys.A))
             {
-                cam.position += new Vector2(-3, 0);
+                cam.position += new Vector2(-5, 0);
             }
 
             if (InputManager.Instance.getMouseWheelState() > InputManager.Instance.getOldMouseWheelState())
             {
                 cam.zoom += 0.1f;
+                if (cam.zoom > 3)
+                {
+                    cam.zoom = 3f;
+                }
             }
 
             if (InputManager.Instance.getMouseWheelState() < InputManager.Instance.getOldMouseWheelState())
             {
                 cam.zoom -= 0.1f;
+                if (cam.zoom < 0.5f)
+                {
+                    cam.zoom = 0.5f;
+                }
             }
 
             for (int i = MachineList.Count - 1; i >= 0; i--)

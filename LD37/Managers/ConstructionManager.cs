@@ -1,5 +1,6 @@
 ﻿using LD37.Entities;
 using LD37.Entities.Machines;
+using LD37.UI;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -38,7 +39,7 @@ namespace LD37.Managers
 
         }
 
-        public void Update(Matrix viewmatrix)
+        public void Update(Matrix viewmatrix, MainGameCanvas canvas)
         {
             if (InputManager.Instance.mouseIsPressed(MouseButton.Left))
             {
@@ -56,6 +57,11 @@ namespace LD37.Managers
                         switch (BuildMode)
                         {
                             case BuildingMode.None:
+                                if (item.Building is SortingMachine)
+                                {
+                                    canvas.sortingSettings.visible = true;
+                                    canvas.selectedSortingMachine = (SortingMachine)item.Building;
+                                }
                                 break;
                             case BuildingMode.Sell:
                                 if (item.Building != null)

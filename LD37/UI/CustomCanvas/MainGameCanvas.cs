@@ -1,4 +1,5 @@
-﻿using LD37.Entities.Resources;
+﻿using LD37.Entities.Machines;
+using LD37.Entities.Resources;
 using LD37.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -7,16 +8,18 @@ using System.Diagnostics;
 
 namespace LD37.UI
 {
-    class MainGameCanvas : UICanvas
+    public class MainGameCanvas : UICanvas
     {
 
         public ConstructionManager constructionManager;
 
         public bool isBuilding = false;
+        public bool isOverUI;
 
         UIText money;
         UIText buildMode;
         UIText buildRotation;
+        UIText timePlayed;
 
         UIButton openMenu;
         UIPanel mainPanel;
@@ -49,6 +52,32 @@ namespace LD37.UI
         UIButton plasticButton;
 
         UIText impTitle;
+
+        public SortingMachine selectedSortingMachine;
+        public UIPanel sortingSettings;
+        UIText sortingSettingsTitle;
+
+        UIPanel sortingbatteryPanel;
+        UIPanel sortingleatherPanel;
+        UIPanel sortingplasticPanel;
+
+        UIButton closeSorting;
+
+        UIText sortingbatteryTitle;
+        UIText sortingleatherTitle;
+        UIText sortingplasticTitle;
+
+        UIButton sortingbatteryButtonUp;
+        UIButton sortingbatteryButtonDown;
+        UIButton sortingbatteryButtonRight;
+
+        UIButton sortingleatherButtonUp;
+        UIButton sortingleatherButtonDown;
+        UIButton sortingleatherButtonRight;
+
+        UIButton sortingplasticButtonUp;
+        UIButton sortingplasticButtonRight;
+        UIButton sortingplasticButtonDown;
 
         int windowWidth = 1280;
         int windowHeight = 720;
@@ -97,6 +126,7 @@ namespace LD37.UI
             money = (UIText)CreateUIElement(new UIText(new Vector2(padding, 0), "Money: $1 000 000"));
             buildMode = (UIText)CreateUIElement(new UIText(new Vector2(padding, 30), "Build Mode: "));
             buildRotation = (UIText)CreateUIElement(new UIText(new Vector2(padding, 60), "Build Rotation: "));
+            timePlayed = (UIText)CreateUIElement(new UIText(new Vector2(padding, 120), "Time Played: "));
 
             openMenu = (UIButton)CreateUIElement(new UIButton("Menu", new Rectangle(windowWidth - menuBtnW, windowHeight - menuBtnH, menuBtnW, menuBtnH), new Vector2(10, 5)));
             mainPanel = (UIPanel)CreateUIElement(new UIPanel(new Rectangle(0, windowHeight - menuBtnH, windowWidth - menuBtnW, menuBtnH)));
@@ -137,6 +167,29 @@ namespace LD37.UI
             machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Assembler", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - padding * 3, windowHeight - machine1H - 50, machine1W, machine1H), new Vector2(10, 0), WindowTheme.Dark)));
             machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Transporter Belt", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - machine2W - padding * 4, windowHeight - machine2H - 50, machine2W, machine2H), new Vector2(10, 0), WindowTheme.Dark)));
             machines.Add((UIButton)machinePanel.CreateUIElement(new UIButton("Sorting Machine", new Rectangle(windowWidth - menuBtnW - machine0W - machine1W - machine2W - machine3W - padding * 5, windowHeight - machine3H - 50, machine3W, machine3H), new Vector2(10, 0), WindowTheme.Dark)));
+
+            sortingSettings = (UIPanel)CreateUIElement(new UIPanel(new Rectangle(windowWidth / 2 - impWindowW / 2, windowHeight / 2 - impWindowH / 2, impWindowW, impWindowH)));
+            sortingSettings.visible = false;
+            sortingSettingsTitle = (UIText)sortingSettings.CreateUIElement(new UIText(new Vector2(impWin.size.X + impWindowW / 2 - 350 / 2, impWin.size.Y + 40 + padding), "Sorting Machine Settings"));
+            closeSorting = (UIButton)sortingSettings.CreateUIElement(new UIButton("Close", new Rectangle(impWin.size.X + impWindowW - 200 - padding, impH * 4 + 150 + padding / 2 * 6, 100, 45), new Vector2(10, 2.5f), WindowTheme.Light));
+
+            sortingbatteryPanel = (UIPanel)sortingSettings.CreateUIElement(new UIPanel(new Rectangle(impWin.size.X + impWindowW / 2 - impItemPanleW / 2, impH + 150, impItemPanleW, impItemPanleH), WindowTheme.Light));
+            sortingbatteryTitle = (UIText)sortingbatteryPanel.CreateUIElement(new UIText(new Vector2(impWin.size.X + impWindowW / 2 - impItemPanleW / 2 + padding, impH + 150 + padding), "Battery"));
+            sortingbatteryButtonUp = (UIButton)sortingbatteryPanel.CreateUIElement(new UIButton("Up", new Rectangle(impWin.size.X + impWindowW - 200 - padding, impH + 150 + padding / 2, 100, 45), new Vector2(10, 2.5f)));
+            sortingbatteryButtonRight = (UIButton)sortingbatteryPanel.CreateUIElement(new UIButton("Right", new Rectangle(impWin.size.X + impWindowW - 110 - 200 - padding, impH + 150 + padding / 2, 100, 45), new Vector2(10, 2.5f)));
+            sortingbatteryButtonDown = (UIButton)sortingbatteryPanel.CreateUIElement(new UIButton("Down", new Rectangle(impWin.size.X + impWindowW - 110 * 2 - 200 - padding, impH + 150 + padding / 2, 100, 45), new Vector2(10, 2.5f)));
+
+            sortingleatherPanel = (UIPanel)sortingSettings.CreateUIElement(new UIPanel(new Rectangle(impWin.size.X + impWindowW / 2 - impItemPanleW / 2, impH * 2 + 150 + padding, impItemPanleW, impItemPanleH), WindowTheme.Light));
+            sortingleatherTitle = (UIText)sortingleatherPanel.CreateUIElement(new UIText(new Vector2(impWin.size.X + impWindowW / 2 - impItemPanleW / 2 + padding, impH * 2 + 150 + padding * 2), "Leather"));
+            sortingleatherButtonUp = (UIButton)sortingleatherPanel.CreateUIElement(new UIButton("Up", new Rectangle(impWin.size.X + impWindowW - 200 - padding, impH * 2 + 150 + padding / 2 * 4, 100, 45), new Vector2(10, 2.5f)));
+            sortingleatherButtonRight = (UIButton)sortingleatherPanel.CreateUIElement(new UIButton("Right", new Rectangle(impWin.size.X + impWindowW - 110 - 200 - padding, impH * 2 + 150 + padding / 2 * 4, 100, 45), new Vector2(10, 2.5f)));
+            sortingleatherButtonDown = (UIButton)sortingleatherPanel.CreateUIElement(new UIButton("Down", new Rectangle(impWin.size.X + impWindowW - 110 * 2 - 200 - padding, impH * 2 + 150 + padding / 2 * 4, 100, 45), new Vector2(10, 2.5f)));
+
+            sortingplasticPanel = (UIPanel)sortingSettings.CreateUIElement(new UIPanel(new Rectangle(impWin.size.X + impWindowW / 2 - impItemPanleW / 2, impH * 3 + 150 + padding * 2, impItemPanleW, impItemPanleH), WindowTheme.Light));
+            sortingplasticTitle = (UIText)sortingplasticPanel.CreateUIElement(new UIText(new Vector2(impWin.size.X + impWindowW / 2 - impItemPanleW / 2 + padding, impH * 3 + 150 + padding * 3), "Plastic"));
+            sortingplasticButtonUp = (UIButton)sortingplasticPanel.CreateUIElement(new UIButton("Up", new Rectangle(impWin.size.X + impWindowW - 200 - padding, impH * 3 + 150 + padding / 2 * 6, 100, 45), new Vector2(10, 2.5f)));
+            sortingplasticButtonRight = (UIButton)sortingplasticPanel.CreateUIElement(new UIButton("Right", new Rectangle(impWin.size.X + impWindowW - 110 - 200 - padding, impH * 3 + 150 + padding / 2 * 6, 100, 45), new Vector2(10, 2.5f)));
+            sortingplasticButtonDown = (UIButton)sortingplasticPanel.CreateUIElement(new UIButton("Down", new Rectangle(impWin.size.X + impWindowW - 110 * 2 - 200 - padding, impH * 3 + 150 + padding / 2 * 6, 100, 45), new Vector2(10, 2.5f)));
         }
 
         public override void Update(GameTime gameTime)
@@ -144,6 +197,14 @@ namespace LD37.UI
             money.text = "Money:  $" + StatManager.Instance.GetMoney;
             buildMode.text = "Build Tool: " + constructionManager.BuildMode;
             buildRotation.text = "Build Direction: " + constructionManager.BuildDirection;
+            timePlayed.text = "Time Left: " + (GameManager.Instance.GameLength / 1000).ToString() + "s";
+
+            if (selectedSortingMachine != null)
+            {
+                sortingbatteryTitle.text = "Battery - " + selectedSortingMachine.SortDirection[typeof(Battery)];
+                sortingleatherTitle.text = "Leather - " + selectedSortingMachine.SortDirection[typeof(Leather)];
+                sortingplasticTitle.text = "Plastic - " + selectedSortingMachine.SortDirection[typeof(Plastic)];
+            }
 
             imp.Update(gameTime);
             impWin.Update(gameTime);
@@ -158,7 +219,21 @@ namespace LD37.UI
                 machines[i].Update(gameTime);
             }
 
+            #region overUICheck
 
+            Rectangle temp = new Rectangle(0, windowHeight - 100, windowWidth, 100);
+            if (temp.Contains(InputManager.Instance.getMousePos()))
+            {
+                isOverUI = true;
+            }
+            else
+            {
+                isOverUI = false;
+            }
+
+            #endregion
+
+            #region buttonChecks
             if (isBuilding)
             {
                 if (exitBuildMode.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
@@ -236,6 +311,54 @@ namespace LD37.UI
                 return;
             }
 
+            if (sortingbatteryPanel.visible)
+            {
+                if (sortingbatteryButtonUp.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    selectedSortingMachine.SortDirection[typeof(Battery)] = ConstructionManager.BuildingDirection.UP;
+                }
+                if (sortingbatteryButtonRight.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    selectedSortingMachine.SortDirection[typeof(Battery)] = ConstructionManager.BuildingDirection.RIGHT;
+                }
+                if (sortingbatteryButtonDown.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    selectedSortingMachine.SortDirection[typeof(Battery)] = ConstructionManager.BuildingDirection.DOWN;
+                }
+
+                if (sortingleatherButtonUp.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    selectedSortingMachine.SortDirection[typeof(Leather)] = ConstructionManager.BuildingDirection.UP;
+                }
+                if (sortingleatherButtonRight.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    selectedSortingMachine.SortDirection[typeof(Leather)] = ConstructionManager.BuildingDirection.RIGHT;
+                }
+                if (sortingleatherButtonDown.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    selectedSortingMachine.SortDirection[typeof(Leather)] = ConstructionManager.BuildingDirection.DOWN;
+                }
+
+                if (sortingplasticButtonUp.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    selectedSortingMachine.SortDirection[typeof(Plastic)] = ConstructionManager.BuildingDirection.UP;
+                }
+                if (sortingplasticButtonRight.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    selectedSortingMachine.SortDirection[typeof(Plastic)] = ConstructionManager.BuildingDirection.RIGHT;
+                }
+                if (sortingplasticButtonDown.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    selectedSortingMachine.SortDirection[typeof(Plastic)] = ConstructionManager.BuildingDirection.DOWN;
+                }
+
+                if (closeSorting.mouseOver && InputManager.Instance.mouseIsPressed(MouseButton.Left))
+                {
+                    sortingSettings.visible = false;
+                    selectedSortingMachine = null;
+                }
+                #endregion
+            }
 
             if (impWin.visible)
             {

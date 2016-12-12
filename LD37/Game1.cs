@@ -28,7 +28,7 @@ namespace LD37
         /// </summary>
         protected override void Initialize()
         {
-            Window.Title = "Santa's Workshop";
+            Window.Title = "Santa's Workshop - LD37";
             base.Initialize();
         }
 
@@ -83,7 +83,7 @@ namespace LD37
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             LevelManager.Instance.currentLevel.Draw(spriteBatch);
 

@@ -8,12 +8,13 @@ namespace LD37.Entities.Machines
 {
     public class SortingMachine : Machine
     {
-        Dictionary<Type, BuildingDirection> SortDirection = new Dictionary<Type, BuildingDirection>();
+        public Dictionary<Type, BuildingDirection> SortDirection = new Dictionary<Type, BuildingDirection>();
 
         public SortingMachine()
         {
-            SortDirection.Add(typeof(Leather), BuildingDirection.UP);
-            SortDirection.Add(typeof(Plastic), BuildingDirection.DOWN);
+            SortDirection.Add(typeof(Battery), BuildingDirection.RIGHT);
+            SortDirection.Add(typeof(Leather), BuildingDirection.RIGHT);
+            SortDirection.Add(typeof(Plastic), BuildingDirection.RIGHT);
         }
 
         public override void Update(GameTime gameTime)
